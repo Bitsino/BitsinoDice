@@ -4,7 +4,7 @@ class CashoutsController < ApplicationController
 
   def create
     response = Cashout.perform(current_user.pkey, cashout_attributes[:address], amount)
-    json     = JSON.parse(response.body)
+    json     = JSON.parse(response)
 
     respond_to do |format|
       format.json do
