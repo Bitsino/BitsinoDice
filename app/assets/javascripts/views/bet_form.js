@@ -30,9 +30,9 @@ window.App.Views.BetForm = Backbone.View.extend({
     this.model.set({
       balance: +parseFloat($('#balance').val()),
       rolltype: this.$el.find('#rolltype :checked').val(),
-      amount: +parseFloat(this.$el.find('#bet_amount').val()).toPrecision(8),
-      chance: +parseFloat(this.$el.find('#bet_chance').val()).toPrecision(5),
-      multiplier: +parseFloat(this.$el.find('#bet_multiplier').val()).toPrecision(5),
+      amount: +parseFloat(this.$el.find('#bet_amount').val()).toFixed(8),
+      chance: +parseFloat(this.$el.find('#bet_chance').val()).toFixed(5),
+      multiplier: +parseFloat(this.$el.find('#bet_multiplier').val()).toFixed(5),
     });
 
     if (this.model.isValid()) {
@@ -43,7 +43,7 @@ window.App.Views.BetForm = Backbone.View.extend({
   },
 
   updateAmount: function() {
-    this.$el.find('#bet_amount').val(this.model.get('amount'));
+    this.$el.find('#bet_amount').val(parseFloat(this.model.get('amount')).toFixed(8));
   },
 
   updateChance: function() {
@@ -51,7 +51,7 @@ window.App.Views.BetForm = Backbone.View.extend({
   },
 
   updateProfit: function() {
-    this.$el.find('#bet_profit').val(this.model.get('profit'));
+    this.$el.find('#bet_profit').val(parseFloat(this.model.get('profit')).toFixed(8));
   },
 
   updateMultiplier: function() {
@@ -104,6 +104,7 @@ window.App.Views.BetForm = Backbone.View.extend({
     this.$el.find('#bet_profit').val(0.00000000.toFixed(8));
     this.$el.find('#bet_chance').val(49.50.toFixed(2));
     this.$el.find('#bet_multiplier').val(2.0000.toFixed(4));
+    this.$el.find('#bet_game').val(49.50.toFixed(2));
     this.$el.find('#rolltype input[value="under"]').prop('checked', true);
 
     this.setValues();
