@@ -9,7 +9,7 @@ window.App = {
   Views: {},
   Routers: {},
 
-  base_url: 'http://localhost:3000/',
+  base_url: 'http://bitdice.herokuapp.com/',
 
   auth_token: function() {
     return $.cookie('auth_token');
