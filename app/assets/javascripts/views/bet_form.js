@@ -71,11 +71,15 @@ window.App.Views.BetForm = Backbone.View.extend({
       {},
       {
         success: function(model, response, options) {
+          var balance;
+          
           if (model.get('win_or_lose') === 'win') {
-            App.user.set('balance', App.user.get('balance') + model.get('profit'));
+            balance = (+App.user.get('balance') + +model.get('profit'));
           } else {
-            App.user.set('balance', App.user.get('balance') - model.amount);
+            balance = (+App.user.get('balance') - +model.amount);
           }
+
+          App.user.set('balance', balance.toFixed(8));
           
           App.trigger('updateBalance', model.get('win_or_lose'));
 
