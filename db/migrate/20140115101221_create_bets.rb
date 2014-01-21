@@ -3,8 +3,8 @@ class CreateBets < ActiveRecord::Migration
     create_table :bets do |t|
       t.references :user
       t.references :secret
-      t.decimal :amount, scale: 10, precision: 5
-      t.decimal :multiplier, scale: 10, precision: 5
+      t.decimal :amount, scale: 8, precision: 15
+      t.decimal :multiplier, scale: 4, precision: 8
       t.decimal :game, scale: 4, precision: 2
       t.decimal :roll, scale: 4, precision: 2
       t.string :rolltype, default: 'under'
