@@ -23,8 +23,8 @@ class CashoutsController < ApplicationController
     end
 
     def amount
-      if current_user.balance >= cashout_attributes[:amount].to_f
-        cashout_attributes[:amount].to_f - 0.0005
+      if (current_user.balance - 0.0005) >= cashout_attributes[:amount].to_f
+        cashout_attributes[:amount].to_f
       else
         current_user.balance - 0.0005
       end
