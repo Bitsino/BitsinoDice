@@ -91,6 +91,7 @@ window.App.Views.BetForm = Backbone.View.extend({
 
   reset: function() {
     this.$el.find('#bet_amount').val('0.00000000');
+    this.$el.find('#bet_profit').val('0.00000000');
     this.$el.find('#bet_chance').val('49.50');
     this.$el.find('#bet_multiplier').val('2.0000');
     this.$el.find('#rolltype input[value="under"]').prop('checked', true);
