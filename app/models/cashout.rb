@@ -2,11 +2,12 @@ class Cashout
 
   def self.perform(pkey, recipient, amount)
     attributes = { address: recipient, amount: (amount * 100000000.0) }
-    response   = Net::HTTP.post_form("https://blockchain.info/merchant/#{pkey}/payment", attributes)
+    uri        = URI.parse("https://blockchain.info/merchant/#{pkey}/payment")
+    response   = Net::HTTP.post_form(uri, attributes)
 
-    Rails.logger.info "Payment of #{amount} sent to #{address}"
+    Rails.logger.info "Payment of #{amount} sent to #{recipient}"
 
-    response
+    response.body
   end
 
 end
