@@ -19,6 +19,7 @@ window.App.Routers.Navigation = Backbone.Router.extend({
       new App.Views.RegistrationModal({ el: $('#registerModal').get(0) }).show();
     } else {
       App.trigger('login', App.user);
+      App.trigger('updateBalance');
     }
   }
 

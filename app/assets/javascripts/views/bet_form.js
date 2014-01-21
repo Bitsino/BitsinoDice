@@ -79,24 +79,20 @@ window.App.Views.BetForm = Backbone.View.extend({
             balance = (+App.user.get('balance') - +model.get('amount'));
           }
 
-          console.log(+App.user.get('balance'));
-          console.log(+model.get('amount'));
-          console.log(+model.get('profit'));
-
           App.user.set('balance', balance);
-          
-          App.trigger('updateBalance', model.get('win_or_lose'));
 
           ws.send(JSON.stringify(model.toJSON()));
+
+          App.trigger('updateBalance');
         }
       }
     );
   },
 
   reset: function() {
-    this.$el.find('#bet_amount').val(0.00000000);
-    this.$el.find('#bet_chance').val(49.50);
-    this.$el.find('#bet_multiplier').val(2.0000);
+    this.$el.find('#bet_amount').val('0.00000000');
+    this.$el.find('#bet_chance').val('49.50');
+    this.$el.find('#bet_multiplier').val('2.0000');
     this.$el.find('#rolltype input[value="under"]').prop('checked', true);
 
     App.trigger('refreshClientSeed');
