@@ -1,9 +1,9 @@
 == README
 
-Environment Variables
+==== Environment Variables
 ENC_KEY - Used to encrypt the private keys of generated addresses
 FEE_ADDRESS - Bets winnings are paid from this address and user loses are paid to this address
 PKEY - The private key of the FEE_ADDRESS
 
-Scheduler
+==== Scheduler
 At midnight each day the scheduler generates a new secret
