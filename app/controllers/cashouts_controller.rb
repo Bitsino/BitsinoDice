@@ -3,8 +3,7 @@ class CashoutsController < ApplicationController
   before_action :authenticate_user_from_token!, only: :show
 
   def create
-    response = Cashout.perform(current_user.pkey, cashout_attributes[:address], amount)
-    json     = JSON.parse(response)
+    response = JSON.parse(Cashout.perform(current_user.pkey, cashout_attributes[:address], amount))
 
     respond_to do |format|
       format.json do
