@@ -1,7 +1,8 @@
 class Cashout
 
   def self.perform(pkey, recipient, amount)
-    attributes = { address: recipient, amount: (amount * 100000000.0) }
+    attributes = { address: recipient, amount: amount }
+    
     uri        = URI.parse("https://blockchain.info/merchant/#{pkey}/payment")
     response   = Net::HTTP.post_form(uri, attributes)
 
