@@ -12,8 +12,11 @@ window.App.Views.BetForm = Backbone.View.extend({
     App.on('login', this.enableForm, this);
 
     this.model = new App.Models.Bet();
+    this.addEventHandlers();
     this.setValues();
+  },
 
+  addEventHandlers: function() {
     this.model.on('change:amount', this.updateAmount, this);
     this.model.on('change:profit', this.updateProfit, this);
     this.model.on('change:chance', this.updateMultiplier, this);
@@ -94,15 +97,17 @@ window.App.Views.BetForm = Backbone.View.extend({
 
   reset: function() {
     this.model = new App.Models.Bet();
-    this.setValues();
 
     this.enableForm();
 
-    this.$el.find('#bet_amount').val(0.00000000);
-    this.$el.find('#bet_profit').val(0.00000000);
-    this.$el.find('#bet_chance').val(49.50);
-    this.$el.find('#bet_multiplier').val(2.0000);
+    this.$el.find('#bet_amount').val(0.00000000.toFixed(8));
+    this.$el.find('#bet_profit').val(0.00000000.toFixed(8));
+    this.$el.find('#bet_chance').val(49.50.toFixed(2));
+    this.$el.find('#bet_multiplier').val(2.0000.toFixed(4));
     this.$el.find('#rolltype input[value="under"]').prop('checked', true);
+
+    this.setValues();
+    this.addEventHandlers();
 
     App.trigger('refreshClientSeed');
     App.trigger('refreshServerSeed');
