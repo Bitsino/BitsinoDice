@@ -81,9 +81,8 @@ window.App.Views.BetForm = Backbone.View.extend({
           }
 
           App.user.set('balance', balance);
-          console.log(model.toJSON());
-          console.log(response);
-          ws.send(JSON.stringify(model.toJSON()));
+          
+          ws.send(JSON.stringify(response));
 
           App.trigger('updateBalance');
 
