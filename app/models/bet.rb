@@ -46,9 +46,9 @@ class Bet < ActiveRecord::Base
       return if user.nil?
 
       if win? 
-        Cashout.perform(user.pkey, user.address, profit)
+        Cashout.perform(user.pkey, user.address, profit.in_satoshi)
       else
-        Cashout.perform(ENV['PKEY'], ENV['FEE_ADDRESS'], amount)
+        Cashout.perform(ENV['PKEY'], ENV['FEE_ADDRESS'], amount.in_satoshi)
       end
     end
   
