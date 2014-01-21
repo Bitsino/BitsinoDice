@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   end
 
   def balance
-    @balance ||= Net::HTTP.get_response(URI.parse("http://blockchain.info/q/addressbalance/#{address}?confirmations=1")).body.to_i / 100000000
+    @balance ||= Net::HTTP.get_response(URI.parse("http://blockchain.info/q/addressbalance/#{address}?confirmations=1")).body.to_i / 100000000.0
   end
 
   protected
