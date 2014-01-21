@@ -23,10 +23,10 @@ class CashoutsController < ApplicationController
     end
 
     def amount
-      if (current_user.balance - 0.0005) >= cashout_attributes[:amount].to_f
-        cashout_attributes[:amount].to_f
+      if (current_user.balance.in_satoshi - 0.0005.in_satoshi) >= cashout_attributes[:amount].to_f.in_satoshi
+        cashout_attributes[:amount].to_f.in_satoshi
       else
-        current_user.balance - 0.0005
+        current_user.balance.in_satoshi - 0.0005.in_satoshi
       end
     end
 end
