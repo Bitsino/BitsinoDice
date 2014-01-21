@@ -33,10 +33,8 @@ window.App.Views.CashoutModal = Backbone.View.extend({
         },
         error: function(model, xhr, options) {
           self.$el.find('form').remove();
-          console.log(model);
-          console.log(xhr);
-          console.log(xhr.responseJSON)
-          self.$el.find('.modal-body').append('<p>' + xhr + '</p>');
+
+          self.$el.find('.modal-body').append('<p>' + xhr.responseJSON.error + '</p>');
         }
       }
     );
