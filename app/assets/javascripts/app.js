@@ -27,6 +27,7 @@ window.App = {
   login: function(model) {
     if (model) {
       $.cookie('auth_token', model.get('auth_token'));
+      App.user = model;
     }
   }
 
