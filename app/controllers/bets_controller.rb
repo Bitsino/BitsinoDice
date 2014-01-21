@@ -9,6 +9,7 @@ class BetsController < ApplicationController
   end
 
   def create
+    Rails.logger.error "!!!!!!!!!!!!!!!!!! - #{current_user.inspect}"
     bet             = current_user.bets.build(bet_attributes)
     bet.secret      = Secret.last || Secret.create
     bet.server_seed = session[:server_seed]
