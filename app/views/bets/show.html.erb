@@ -1,0 +1,54 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title">Bet Information</h4>
+    </div>
+    <div class="modal-body">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <td><%= @bet.id %></td>
+          </tr>
+          <tr>
+            <th>User ID</th>
+            <td><%= @bet.user_id %>
+          </tr>
+          <tr>
+            <th>Time</th>
+            <td><%= @bet.created_at.strftime('%d/%m/%Y %H:%M:%S') %>
+          </tr>
+          <tr>
+            <th>Roll</th>
+            <td><%= @bet.roll %>
+          </tr>
+          <tr>
+            <th>Game</th>
+            <td><%= @bet.rolltype == 'under' ? '<' : '>' %> <%= @bet.game %></td>
+          </tr>
+          <tr>
+            <th>Amount</th>
+            <td><%= @bet.amount %></td>
+          </tr>
+          <tr>
+            <th>Profit</th>
+            <td><%= @bet.profit %></td>
+          </tr>
+          <tr>
+            <th>Server Seed</th>
+            <td><%= @bet.server_seed %></td>
+          </tr>
+          <tr>
+            <th>Client Seed</th>
+            <td><%= @bet.client_seed %>
+          </tr>
+          <tr>
+            <th>Secret</th>
+            <td><%= @bet.secret %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

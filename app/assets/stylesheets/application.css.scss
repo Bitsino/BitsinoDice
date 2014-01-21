@@ -1,0 +1,55 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+ @import 'bootstrap';
+
+body {
+  padding-top: 70px;
+  padding-bottom: 20px;
+}
+
+td.win {
+  color: green;
+}
+
+td.lose {
+  color: red;
+}
+
+dt, label {
+  text-transform: uppercase;
+  color: #c1c1c1;
+  font-size: 12px;
+}
+
+dd, .btc-options .row {
+  margin-bottom: 10px;
+}
+
+.radio-inline {
+  line-height: 24px;
+}
+
+.credit {
+  color: green;
+}
+
+.debit {
+  color: red;
+}
+
+.regular-input {
+  color: #555555;
+  -webkit-transition: color linear 1500ms;
+}
