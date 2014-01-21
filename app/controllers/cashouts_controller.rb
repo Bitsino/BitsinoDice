@@ -10,7 +10,7 @@ class CashoutsController < ApplicationController
         if response.code == 200
           render nothing: true
         else
-          render json: JSON.parse(response.body), status: response.code
+          render json: JSON.parse(response.body), status: 500
         end
       end
     end
