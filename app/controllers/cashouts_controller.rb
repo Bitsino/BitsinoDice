@@ -4,13 +4,14 @@ class CashoutsController < ApplicationController
 
   def create
     response = Cashout.perform(current_user.pkey, cashout_attributes[:address], amount)
+    json     = JSON.parse(response.body)
 
     respond_to do |format|
       format.json do
-        if response.code == 200
-          render nothing: true
+        if response.key?('error')
+          render json: response, status: 500
         else
-          render json: JSON.parse(response.body), status: 500
+          render nothing: true
         end
       end
     end
