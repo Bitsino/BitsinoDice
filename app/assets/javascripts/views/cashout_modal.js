@@ -19,8 +19,7 @@ window.App.Views.CashoutModal = Backbone.View.extend({
     var self = this;
 
     this.model.set({
-      amount: +this.$el.find('#amount').val().toFixed(8),
-      // balance: +$('#balance').val().toFixed(8),
+      amount: parseFloat(this.$el.find('#amount').val()).toFixed(8),
       address: this.$el.find('#address').val()
     });
 
