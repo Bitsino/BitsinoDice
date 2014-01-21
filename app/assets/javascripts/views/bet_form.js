@@ -21,7 +21,6 @@ window.App.Views.BetForm = Backbone.View.extend({
     this.model.on('change:game', this.updateGame, this);
 
     this.model.on('invalid', this.showValidationNotice, this);
-    this.model.on('sync', this.reset, this);
   },
 
   setValues: function() {
@@ -67,6 +66,8 @@ window.App.Views.BetForm = Backbone.View.extend({
 
     this.model.set('client_seed', $('#client-seed').val());
 
+    var self = this;
+
     this.model.save(
       {},
       {
@@ -84,12 +85,19 @@ window.App.Views.BetForm = Backbone.View.extend({
           ws.send(JSON.stringify(model.toJSON()));
 
           App.trigger('updateBalance');
+
+          self.reset();
         }
       }
     );
   },
 
   reset: function() {
+    this.model = new App.Models.Bet();
+    this.setValues();
+
+    this.enableForm();
+
     this.$el.find('#bet_amount').val('0.00000000');
     this.$el.find('#bet_profit').val('0.00000000');
     this.$el.find('#bet_chance').val('49.50');
@@ -98,8 +106,6 @@ window.App.Views.BetForm = Backbone.View.extend({
 
     App.trigger('refreshClientSeed');
     App.trigger('refreshServerSeed');
-
-    this.initialize();
   },
 
   disableForm: function() {
