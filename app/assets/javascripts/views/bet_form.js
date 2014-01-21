@@ -12,8 +12,8 @@ window.App.Views.BetForm = Backbone.View.extend({
     App.on('login', this.enableForm, this);
 
     this.model = new App.Models.Bet();
-    this.addEventHandlers();
     this.setValues();
+    this.addEventHandlers();
   },
 
   addEventHandlers: function() {
