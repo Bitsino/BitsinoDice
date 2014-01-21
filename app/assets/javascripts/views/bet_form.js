@@ -41,7 +41,7 @@ window.App.Views.BetForm = Backbone.View.extend({
   },
 
   updateAmount: function() {
-    this.$el.find('#bet_amount').val(this.model.get('amount').toFixed(8));
+    this.$el.find('#bet_amount').val(this.model.get('amount'));
   },
 
   updateChance: function() {
