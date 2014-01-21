@@ -33,7 +33,9 @@ window.App.Views.CashoutModal = Backbone.View.extend({
         },
         error: function(model, xhr, options) {
           self.$el.find('form').remove();
-          self.$el.find('.modal-body').append('<p>Error processing cashout</p>');
+          console.log(model);
+          console.log(xhr);
+          self.$el.find('.modal-body').append('<p>' + xhr + '</p>');
         }
       }
     );
