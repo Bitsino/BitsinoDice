@@ -14,7 +14,7 @@ class Bet < ActiveRecord::Base
       game: game,
       rolltype: rolltype == 'under' ? '<' : '>',
       roll: roll.round(2),
-      profit: win? ? (".8f" % profit) : 0,
+      profit: win? ? ("%.8f" % profit) : 0,
       win_or_lose: win? ? 'win' : 'lose',
       created_at: created_at,
       username: user.try(:username) || 'Guest'
