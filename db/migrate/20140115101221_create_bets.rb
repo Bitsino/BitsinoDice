@@ -5,8 +5,8 @@ class CreateBets < ActiveRecord::Migration
       t.references :secret
       t.decimal :amount, scale: 8, precision: 15
       t.decimal :multiplier, scale: 4, precision: 8
-      t.decimal :game, scale: 4, precision: 2
-      t.decimal :roll, scale: 4, precision: 2
+      t.decimal :game, scale: 2, precision: 4
+      t.decimal :roll, scale: 2, precision: 4
       t.string :rolltype, default: 'under'
       t.string :client_seed
       t.string :server_seed
