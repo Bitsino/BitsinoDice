@@ -43,8 +43,10 @@ class Bet < ActiveRecord::Base
     end
 
     def make_payment
+      return if user.nil?
+
       if win? 
-        Cashout.perform(user.pkey, user.recipient, profit)
+        Cashout.perform(user.pkey, user.address, profit)
       else
         Cashout.perform(ENV['PKEY'], ENV['FEE_ADDRESS'], amount)
       end
