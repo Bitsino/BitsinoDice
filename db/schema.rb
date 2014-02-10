@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20140116095513) do
   create_table "bets", force: true do |t|
     t.integer  "user_id"
     t.integer  "secret_id"
-    t.decimal  "amount",      precision: 5, scale: 10
-    t.decimal  "multiplier",  precision: 5, scale: 10
-    t.decimal  "game",        precision: 2, scale: 4
-    t.decimal  "roll",        precision: 2, scale: 4
+    t.decimal  "amount",      precision: 15, scale: 8
+    t.decimal  "multiplier",  precision: 8,  scale: 4
+    t.decimal  "game",        precision: 4,  scale: 2
+    t.decimal  "roll",        precision: 4,  scale: 2
     t.string   "rolltype",                             default: "under"
     t.string   "client_seed"
     t.string   "server_seed"
