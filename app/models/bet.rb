@@ -22,7 +22,7 @@ class Bet < ActiveRecord::Base
   end
 
   def profit
-    (amount * multiplier) - amount
+    (amount * (multiplier - ENV['HOUSE_EDGE'].to_d).to_d) - amount
   end
 
   def win?
@@ -45,10 +45,10 @@ class Bet < ActiveRecord::Base
     def make_payment
       return if user.nil?
 
-      if win? 
-        Cashout.perform(user.pkey, user.address, profit.in_satoshi)
+      if win?
+        Cashout.perform(ENV['PKEY'], user.address, profit.in_satoshi)
       else
-        Cashout.perform(ENV['PKEY'], ENV['FEE_ADDRESS'], amount.in_satoshi)
+        Cashout.perform(user.pkey ENV['FEE_ADDRESS'], amount.in_satoshi)
       end
     end
   
