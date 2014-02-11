@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   def create
     user = User.new(user_attributes)
+    
     respond_to do |format|
       format.json do
         if user.save
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   protected
 
     def user_attributes
-      params.require(:user).permit(:username, :password)
+      params.permit(:username, :password)
     end
 
 end
