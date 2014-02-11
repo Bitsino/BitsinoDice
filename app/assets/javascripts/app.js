@@ -29,6 +29,14 @@ window.App = {
       $.cookie('auth_token', model.get('auth_token'));
       App.user = model;
     }
+  },
+
+  logout: function() {
+    App.user = null;
+
+    $.removeCookie('auth_token');
+
+    window.location = '/';
   }
 
 };

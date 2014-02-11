@@ -1,6 +1,7 @@
 window.App.Routers.Navigation = Backbone.Router.extend({
 
   routes: {
+    'sign-out': 'signOut',
     '*path': 'defaultRoute'
   },
 
@@ -14,13 +15,23 @@ window.App.Routers.Navigation = Backbone.Router.extend({
     new App.Views.UserDetails({ el: $('#userDetails').get(0) });
     new App.Views.DepositModal({ el: $('#depositModal').get(0) });
     
-    if (!App.auth_token()) {
-      new App.Views.LoginForm({ el: $('#loginForm').get(0) });
+    if (!App.user) {
+      App.loginForm = new App.Views.LoginForm({ el: $('#loginForm').get(0) });
       new App.Views.RegistrationModal({ el: $('#registerModal').get(0) }).show();
     } else {
       App.trigger('login', App.user);
       App.trigger('updateBalance');
     }
+  },
+
+  signOut: function() {
+    $.ajax({
+      url: '/users/sign_out',
+      type: 'DELETE',
+      success: function(result) {
+        App.logout();
+      }
+    });
   }
 
 });
