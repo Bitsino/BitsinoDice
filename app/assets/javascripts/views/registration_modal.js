@@ -1,7 +1,8 @@
 window.App.Views.RegistrationModal = Backbone.View.extend({
 
   events: {
-    'submit': 'process'
+    'submit': 'process',
+    'click a': 'login'
   },
 
   initialize: function() {
@@ -18,6 +19,17 @@ window.App.Views.RegistrationModal = Backbone.View.extend({
     this.$el.modal('hide');
   },
 
+  login: function(e) {
+    e.preventDefault();
+
+    $('.username').val(this.$el.find('#user_username').val());
+    $('.password').val(this.$el.find('#user_password').val());
+
+    this.hide();
+
+    App.loginForm.$el.trigger('submit');
+  },
+
   process: function(e) {
     e.preventDefault();
 
@@ -26,6 +38,8 @@ window.App.Views.RegistrationModal = Backbone.View.extend({
       password: this.$el.find('#user_password').val()
     });
 
+    var self = this;
+
     this.model.save(
       {},
       {
@@ -33,7 +47,12 @@ window.App.Views.RegistrationModal = Backbone.View.extend({
           App.trigger('login', model);
         },
         error: function(model, xhr, options) {
-          console.log(xhr)
+          $(self).before('<div id="loginAlert" class="container"><div class="alert alert-danger"><p><strong>Error</strong> - please check the details you have entered</p></div></div>');
+          setTimeout(function() {
+            $('#loginAlert').fadeOut(function() {
+              $(this).remove();
+            });
+          }, 1500);
         }
       }
     );
