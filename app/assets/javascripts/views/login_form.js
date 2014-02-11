@@ -23,6 +23,7 @@ window.App.Views.LoginForm = Backbone.View.extend({
       {
         success: function(model, response, options) {
           var user = new App.Models.User(response);
+          $('#logout').show();
           App.trigger('login', user);
         },
         error: function(model, xhr, options) {
