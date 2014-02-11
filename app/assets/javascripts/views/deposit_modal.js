@@ -5,7 +5,9 @@ window.App.Views.DepositModal = Backbone.View.extend({
   },
 
   showQRCode: function() {
-    var address = $(this).find('h3').text();
+    var address = $('#balance').data('address');
+
+    $(this).find('h3').text(address);
 
     new QRCode("qrcode", {
       text: address,
