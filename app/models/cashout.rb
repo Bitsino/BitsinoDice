@@ -1,7 +1,11 @@
 class Cashout
 
   def self.perform(pkey, recipient, amount)
-    attributes = { address: recipient, amount: amount }
+    amount     = amount - ENV['TX_FEE'].to_d.in_satoshi
+
+    return if amount <= 0
+    
+    attributes = { to: recipient, amount: amount }
     
     uri        = URI.parse("https://blockchain.info/merchant/#{pkey}/payment")
     response   = Net::HTTP.post_form(uri, attributes)
