@@ -100,12 +100,12 @@ window.App.Views.BetForm = Backbone.View.extend({
 
     this.enableForm();
 
-    this.$el.find('#bet_amount').val(0.00000000.toFixed(8));
-    this.$el.find('#bet_profit').val(0.00000000.toFixed(8));
-    this.$el.find('#bet_chance').val(49.50.toFixed(2));
-    this.$el.find('#bet_multiplier').val(2.0000.toFixed(4));
-    this.$el.find('#bet_game').val(49.50.toFixed(2));
-    this.$el.find('#rolltype input[value="under"]').prop('checked', true);
+    // this.$el.find('#bet_amount').val(0.00000000.toFixed(8));
+    // this.$el.find('#bet_profit').val(0.00000000.toFixed(8));
+    // this.$el.find('#bet_chance').val(49.50.toFixed(2));
+    // this.$el.find('#bet_multiplier').val(2.0000.toFixed(4));
+    // this.$el.find('#bet_game').val(49.50.toFixed(2));
+    // this.$el.find('#rolltype input[value="under"]').prop('checked', true);
 
     this.setValues();
     this.addEventHandlers();
