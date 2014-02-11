@@ -26,6 +26,7 @@ class User < ActiveRecord::Base
       username: username,
       auth_token: auth_token,
       id: id,
+      address: address,
       balance: balance
     }
   end
