@@ -7,7 +7,7 @@ window.App.Views.DepositModal = Backbone.View.extend({
   renderQRCode: function() {
     var address = App.user.get('address');
 
-    $(this).find('h3').text(address);
+    this.$el.find('h3').text(address);
 
     new QRCode("qrcode", {
       text: address,
