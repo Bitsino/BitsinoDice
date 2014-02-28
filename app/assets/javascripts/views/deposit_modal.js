@@ -1,11 +1,11 @@
 window.App.Views.DepositModal = Backbone.View.extend({
   
   initialize: function() {
-    this.$el.on('show.bs.modal', this.showQRCode, this.relatedTarget);
+    App.on('login', this.renderQRCode, this);
   },
 
-  showQRCode: function() {
-    var address = $('#balance').data('address');
+  renderQRCode: function() {
+    var address = App.user.get('address');
 
     $(this).find('h3').text(address);
 
