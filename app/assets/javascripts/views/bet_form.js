@@ -82,7 +82,7 @@ window.App.Views.BetForm = Backbone.View.extend({
           } else {
             balance = (+App.user.get('balance') - +model.get('amount'));
           }
-          console.log(balance);
+
           App.user.set('balance', balance);
           
           ws.send(JSON.stringify(response));
