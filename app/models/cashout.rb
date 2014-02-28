@@ -1,8 +1,9 @@
 class Cashout
 
   def self.perform(pkey, recipient, amount)
+    Rails.logger.error "!!! - Payment of #{amount.to_s}"
     amount     = amount - ENV['TX_FEE'].to_d.in_satoshi
-
+    Rails.logger.error "!!! - Payment of #{amount.to_s}"
     return if amount <= 0
     
     attributes = { to: recipient, amount: amount }
