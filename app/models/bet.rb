@@ -22,7 +22,7 @@ class Bet < ActiveRecord::Base
   end
 
   def profit
-    (amount * (multiplier - house_edge).to_d) - amount
+    (amount * (multiplier).to_d) - amount
   end
 
   def win?
@@ -49,7 +49,6 @@ class Bet < ActiveRecord::Base
         user.balance = user.balance + profit
         user.save
       else
-        #Cashout.perform(user.pkey ENV['FEE_ADDRESS'], amount.in_satoshi)
         user.balance = user.balance - amount
         user.save
       end
@@ -63,13 +62,6 @@ class Bet < ActiveRecord::Base
       else
         Cashout.perform(user.pkey ENV['FEE_ADDRESS'], amount.in_satoshi)
       end
-    end
-    
-    def house_edge
-      if ENV['HOUSE_EDGE']
-        return ENV['HOUSE_EDGE'].to_d
-      end
-      return 0.01
     end
   
 end
