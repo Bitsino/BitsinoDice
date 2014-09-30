@@ -24,5 +24,34 @@ class HomeController < ApplicationController
       end
     end
   end
+  
+  def configure
+    @cold_storage = ColdStorage.new
+    
+    render :layout => 'configure'
+  end
+  
+  def configure_create
 
+    @cold_storage = ColdStorage.new(master_public_key_params)
+    
+    if ColdStorage.count == 0
+      respond_to do |format|
+        if @cold_storage.save
+          format.html { redirect_to root_path, notice: 'Configuration was successfully created.' }
+        else
+          format.html { render action: 'configure', :layout => 'configure' }
+        end
+      end
+    end
+    
+  end
+
+
+  private
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def master_public_key_params
+      params.require(:cold_storage).permit(:mpk, :fund_address)
+    end
 end

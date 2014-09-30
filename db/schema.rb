@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140116095513) do
+ActiveRecord::Schema.define(version: 20140930085512) do
 
   create_table "bets", force: true do |t|
     t.integer  "user_id"
@@ -25,6 +25,11 @@ ActiveRecord::Schema.define(version: 20140116095513) do
     t.string   "server_seed"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "cold_storage", force: true do |t|
+    t.string "mpk"
+    t.string "fund_address"
   end
 
   create_table "secrets", force: true do |t|
