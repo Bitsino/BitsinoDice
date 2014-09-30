@@ -4,7 +4,7 @@ class Bet < ActiveRecord::Base
   belongs_to :secret
 
   before_create :calculate_roll
-  after_create  :make_payment
+  after_create  :update_balance
 
   def as_json(options = {})
     {
@@ -22,7 +22,7 @@ class Bet < ActiveRecord::Base
   end
 
   def profit
-    (amount * (multiplier - ENV['HOUSE_EDGE'].to_d).to_d) - amount
+    (amount * (multiplier - house_edge).to_d) - amount
   end
 
   def win?
@@ -42,6 +42,19 @@ class Bet < ActiveRecord::Base
       self.roll = (hash[0, 8].hex / 42949672.95).round(2)
     end
 
+    def update_balance
+      return if user.nil?
+
+      if win?
+        user.balance = user.balance + profit
+        user.save
+      else
+        #Cashout.perform(user.pkey ENV['FEE_ADDRESS'], amount.in_satoshi)
+        user.balance = user.balance - amount
+        user.save
+      end
+    end
+
     def make_payment
       return if user.nil?
 
@@ -50,6 +63,13 @@ class Bet < ActiveRecord::Base
       else
         Cashout.perform(user.pkey ENV['FEE_ADDRESS'], amount.in_satoshi)
       end
+    end
+    
+    def house_edge
+      if ENV['HOUSE_EDGE']
+        return ENV['HOUSE_EDGE'].to_d
+      end
+      return 0.01
     end
   
 end

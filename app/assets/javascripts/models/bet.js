@@ -15,10 +15,6 @@ window.App.Models.Bet = Backbone.Model.extend({
     if (attrs.amount > attrs.balance) {
       return 'Amount cannot be greater than your balance';
     }
-
-    if (attrs.amount <= 0.0005) {
-      return 'Amount cannot be less than TX Fee';
-    }
   },
 
   calculateGame: function() {

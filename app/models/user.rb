@@ -39,10 +39,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def balance
-    @balance ||= Net::HTTP.get_response(URI.parse("http://blockchain.info/q/addressbalance/#{address}?confirmations=1")).body.to_i.from_satoshi
-  end
-
   protected
 
     def generate_auth_token

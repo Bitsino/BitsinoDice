@@ -83,7 +83,7 @@
           <label>Balance</label>
           <div class="input-group">
             <span class="input-group-addon">BTC</span>
-            <input type="text" id="balance" class="form-control" readonly="true" data-address="<%= current_user.try(:address) %>" />
+            <input type="text" id="balance" class="form-control" value="<%= current_user.try(:balance) %>"" readonly="true" data-address="<%= current_user.try(:address) %>" />
           </div>
         </div>
       </div>
