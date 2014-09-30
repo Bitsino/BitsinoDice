@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140930120939) do
+ActiveRecord::Schema.define(version: 20140930140602) do
 
   create_table "bets", force: true do |t|
     t.integer  "user_id"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20140930120939) do
     t.datetime "updated_at"
     t.string   "username"
     t.decimal  "balance",                precision: 15, scale: 8
+    t.string   "last_transaction_hash"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

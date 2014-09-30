@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
 
   validates :username, uniqueness: { case_sensitive: false }
 
-  attr_encrypted :pkey, :key => ENV['ENC_KEY']
-
   has_many :bets
 
   before_create :generate_auth_token
@@ -38,11 +36,48 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
-
-  protected
-
-    def generate_auth_token
-      self.auth_token = SecureRandom.hex(24)
+  
+  def self.sweep_for_incoming_coins
+    User.all.each do |user|
+      res = blockr('address/txs', user.address)
+      puts res['data']
+      res['data']['txs'].each do |tx|
+        if tx['tx'] == user.last_transaction_hash
+          next
+        end
+        user.balance = user.balance + tx['amount'].to_d
+        user.last_transaction_hash = tx['tx']
+      end
+      if user.changed?
+        user.save
+      end
     end
+  end
+  
+  protected 
+  
+  def self.blockr(cmd, address, params = "")
+    begin
+      base_url = "http://blockr.io/api/v1/#{cmd}/#{address}" + params
+      fetch_response(base_url, true)
+    rescue
+      blockr_is_down
+    end
+  end
+  
+  def self.fetch_response(url, do_json=true)
+    resp = Net::HTTP.get_response(URI.parse(url))
+    data = resp.body
+  
+    if do_json
+      result = JSON.parse(data)
+    else
+      data
+    end
+  end
+
+  def generate_auth_token
+    self.auth_token = SecureRandom.hex(24)
+  end
 
 end
