@@ -1,5 +1,4 @@
 class ColdStorage < ActiveRecord::Base
-
   
   validates :mpk, presence: true
   validates :fund_address, presence: true
