@@ -8,4 +8,7 @@ Primedice::Application.routes.draw do
 
   root :to => "home#index"
   
+  get 'configuration' => 'home#configure'
+  post 'cold_storages' => 'home#configure_create'
+  
 end
