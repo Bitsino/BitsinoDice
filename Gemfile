@@ -31,6 +31,8 @@ gem 'puma', git: 'https://github.com/puma/puma.git'
 gem 'faye-websocket'
 gem 'attr_encrypted'
 
+gem 'money-tree'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

@@ -10,7 +10,6 @@ class User < ActiveRecord::Base
 
   has_many :bets
 
-  before_create :assign_address
   before_create :generate_auth_token
 
   def email_required?
@@ -45,10 +44,6 @@ class User < ActiveRecord::Base
   end
 
   protected
-
-    def assign_address
-      self.address, self.pkey = Net::HTTP.get_response(URI.parse('http://blockchain.info/q/newkey')).body.split(' ')
-    end
 
     def generate_auth_token
       self.auth_token = SecureRandom.hex(24)
