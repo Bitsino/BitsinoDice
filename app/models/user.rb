@@ -39,17 +39,21 @@ class User < ActiveRecord::Base
   
   def self.sweep_for_incoming_coins
     User.all.each do |user|
-      res = blockr('address/txs', user.address)
-      puts res['data']
-      res['data']['txs'].each do |tx|
-        if tx['tx'] == user.last_transaction_hash
-          next
+      
+      # lock the user, in case they are gambling right now.
+      user.with_lock do
+        res = blockr('address/txs', user.address)
+        puts res['data']
+        res['data']['txs'].each do |tx|
+          if tx['tx'] == user.last_transaction_hash
+            next
+          end
+          user.balance = user.balance + tx['amount'].to_d
+          user.last_transaction_hash = tx['tx']
         end
-        user.balance = user.balance + tx['amount'].to_d
-        user.last_transaction_hash = tx['tx']
-      end
-      if user.changed?
-        user.save
+        if user.changed?
+          user.save
+        end
       end
     end
   end
