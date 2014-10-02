@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  address: MyString
+  amount: 1
+  status: false
+
+two:
+  address: MyString
+  amount: 1
+  status: false
