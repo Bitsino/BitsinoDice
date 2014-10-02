@@ -7,3 +7,8 @@ desc "Sweep addresses on block chain"
 task :sweep_blockchain => :environment do
   User.sweep_for_incoming_coins
 end
+
+desc "Create payouts"
+task :create_payouts => :environment do
+  Cashout.create_onchain_payment_request
+end
