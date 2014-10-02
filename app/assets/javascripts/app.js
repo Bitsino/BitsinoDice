@@ -1,7 +1,6 @@
 var scheme   = "ws://";
 var uri      = scheme + window.document.location.host + "/";
 var ws       = new WebSocket(uri);
-
 window.App = {
   Models: {},
   Collections: {},
