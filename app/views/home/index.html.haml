@@ -59,6 +59,10 @@
         .col-md-12
           %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal"}
             Cashout
+      .row
+        .col-md-12
+          %button.btn.btn-primary.btn-block{"data-target" => "#transactionModal", "data-toggle" => "modal"}
+            Transaction History
 .container
   .row
     .col-md-12
@@ -73,7 +77,7 @@
             %th Game
             %th Roll
             %th Profit
-        %tbody
+        %tbody#bets
 #registerModal.modal.fade{"data-backdrop" => "static"}
   .modal-dialog
     .modal-content
@@ -120,4 +124,19 @@
               %input#amount.form-control{:name => "amount", :type => "text"}/
             .col-md-12
               %input.btn.btn-primary{:style => "margin-top: 10px", :type => "submit", :value => "Cashout"}/
+#transactionModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %h4.modal-title Transaction History
+      .modal-body
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Amount
+            %th Type
+            %th Status
+        %tbody
+        
 #betModal.modal

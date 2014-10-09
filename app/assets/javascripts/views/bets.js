@@ -1,6 +1,6 @@
 window.App.Views.Bets = Backbone.View.extend({
 
-  el: 'tbody',
+  el: 'tbody#bets',
   
   initialize: function() {
     this.collection = new App.Collections.Bets();
