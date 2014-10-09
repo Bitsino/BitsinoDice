@@ -17,18 +17,20 @@
             %span.icon-bar
           %a.navbar-brand{:href => "#"} Project name
         .navbar-right
-          %ul#logout.nav.navbar-nav.navbar-right{:style => 'display: none' unless current_user}
-            %li
-              %a{:href => "#sign-out"} Sign Out
-          %form#loginForm.navbar-form.navbar-right{:role => "form", :style => "display: none"}
-            .form-group
-              %input.form-control.username{:placeholder => "Username", :type => "text"}/
-            .form-group
-              %input.form-control.password{:placeholder => "Password", :type => "password"}/
-            %button.btn.btn-success{:type => "submit"} Sign in
+          - if current_user != nil
+            %ul#logout.nav.navbar-nav.navbar-right{:style => 'display: none'}
+              %li
+                %a{:href => "#sign-out"} Sign Out
+          - else
+            %form#loginForm.navbar-form.navbar-right{:role => "form", :style => "display: none"}
+              .form-group
+                %input.form-control.username{:placeholder => "Username", :type => "text"}/
+              .form-group
+                %input.form-control.password{:placeholder => "Password", :type => "password"}/
+              %button.btn.btn-success{:type => "submit"} Sign in
     = yield
-    :javascript
-      <haml_silent>     if current_user 
-      </haml_silent><haml_block>      App.user = new App.Models.User(#{current_user.to_json.html_safe});
-      </haml_block>    App.initialize();
-          App.bets.collection.reset(#{@bets.to_json.html_safe});
+    - if current_user != nil
+      :javascript
+        App.user = new App.Models.User(#{current_user.to_json.html_safe});
+        App.initialize();
+        App.bets.collection.reset(#{@bets.to_json.html_safe});
