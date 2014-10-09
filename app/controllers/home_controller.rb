@@ -14,7 +14,7 @@ class HomeController < ApplicationController
           b.game        = 49.50
         end
 
-        @bets    = Bet.order('created_at ASC').limit(25)
+        @bets    = Bet.order('created_at DESC').limit(25)
       end
       format.json do
         attrs = { server_seed: session[:server_seed] }
