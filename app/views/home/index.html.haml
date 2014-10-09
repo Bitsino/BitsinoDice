@@ -82,7 +82,11 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
         %h4.modal-title Register/Sign In
       .modal-body
         %form{:role => "form"}
@@ -100,7 +104,11 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
         %h4.modal-title Deposit
       .modal-body
         %p.center-block Please send funds to:
@@ -110,7 +118,11 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
         %h4.modal-title Cashout
         %p Please note a fee of 0.0005 BTC will be taken from your balance.
       .modal-body
@@ -128,15 +140,19 @@
   .modal-dialog
     .modal-content
       .modal-header
-        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"}
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
         %h4.modal-title Transaction History
       .modal-body
-      %table.table.table-striped
-        %thead
-          %tr
-            %th Amount
-            %th Type
-            %th Status
-        %tbody
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Amount
+              %th Type
+              %th Status
+          %tbody
         
 #betModal.modal
