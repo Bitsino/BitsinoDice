@@ -14,6 +14,7 @@ window.App.Routers.Navigation = Backbone.Router.extend({
     new App.Views.CashoutModal({ el: $('#cashoutModal').get(0) });
     new App.Views.UserDetails({ el: $('#userDetails').get(0) });
     new App.Views.DepositModal({ el: $('#depositModal').get(0) });
+    new App.Views.Transactions();
     
     if (!App.user) {
       App.loginForm = new App.Views.LoginForm({ el: $('#loginForm').get(0) });
