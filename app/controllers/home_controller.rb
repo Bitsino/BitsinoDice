@@ -14,7 +14,7 @@ class HomeController < ApplicationController
           b.game        = 49.50
         end
 
-        @bets    = Bet.order('created_at DESC').limit(25)
+        @bets    = Bet.order('created_at DESC').limit(25).reverse
         
         if current_user
           @transactions = Transaction.order('created_at DESC').limit(25)
