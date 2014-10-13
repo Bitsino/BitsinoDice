@@ -11,7 +11,7 @@ window.App.Views.Balance = Backbone.View.extend({
   },
 
   updateBalance: function() {
-    this.$el.val(+App.user.get('balance'));
+    this.$el.val(App.user.get('balance'));
   }
   
 });

@@ -7,6 +7,8 @@ window.App.Views.UserDetails = Backbone.View.extend({
   updateUserDetails: function(model) {
     this.$el.find('#username').text(model.get('username'));
     this.$el.find('#userId').text(model.get('id'));
+
+    $('#logout').show();
   }
 
 });

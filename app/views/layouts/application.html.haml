@@ -17,17 +17,15 @@
             %span.icon-bar
           %a.navbar-brand{:href => "#"} Project name
         .navbar-right
-          - if current_user != nil
-            %ul#logout.nav.navbar-nav.navbar-right{:style => 'display: none'}
-              %li
-                %a{:href => "#sign-out"} Sign Out
-          - else
-            %form#loginForm.navbar-form.navbar-right{:role => "form", :style => "display: none"}
-              .form-group
-                %input.form-control.username{:placeholder => "Username", :type => "text"}/
-              .form-group
-                %input.form-control.password{:placeholder => "Password", :type => "password"}/
-              %button.btn.btn-success{:type => "submit"} Sign in
+          %ul#logout.nav.navbar-nav.navbar-right{:style => 'display: none'}
+            %li
+              %a{:href => "#sign-out"} Sign Out
+          %form#loginForm.navbar-form.navbar-right{:role => "form", :style => "display: none"}
+            .form-group
+              %input.form-control.username{:placeholder => "Username", :type => "text"}/
+            .form-group
+              %input.form-control.password{:placeholder => "Password", :type => "password"}/
+            %button.btn.btn-success{:type => "submit"} Sign in
     = yield
     - if current_user != nil
       :javascript
