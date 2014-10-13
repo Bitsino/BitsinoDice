@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :username, uniqueness: { case_sensitive: false }
 
   has_many :bets
+  has_many :transactions
 
   before_create :generate_auth_token
 

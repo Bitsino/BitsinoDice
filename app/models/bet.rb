@@ -47,6 +47,9 @@ class Bet < ActiveRecord::Base
 
       # Lock the user for balance updates.
       user.with_lock do
+        if user.balance == nil
+          user.balance = 0
+        end
         if win?
           user.balance = user.balance + profit
           user.save

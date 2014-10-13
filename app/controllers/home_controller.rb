@@ -15,6 +15,10 @@ class HomeController < ApplicationController
         end
 
         @bets    = Bet.order('created_at DESC').limit(25)
+        
+        if current_user
+          @transactions = Transaction.order('created_at DESC').limit(25)
+        end
       end
       format.json do
         attrs = { server_seed: session[:server_seed] }
