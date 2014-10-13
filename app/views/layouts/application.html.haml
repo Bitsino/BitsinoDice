@@ -34,3 +34,6 @@
         App.user = new App.Models.User(#{current_user.to_json.html_safe});
         App.initialize();
         App.bets.collection.reset(#{@bets.to_json.html_safe});
+    - else
+      :javascript
+        App.initialize();
