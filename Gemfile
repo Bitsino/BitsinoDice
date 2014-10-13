@@ -18,6 +18,7 @@ gem 'coffee-rails', '~> 4.0.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 3.0.3.0'
+gem "font-awesome-rails"
 gem 'socket.io-rails'
 gem 'handlebars_assets'
 gem 'haml-rails'
