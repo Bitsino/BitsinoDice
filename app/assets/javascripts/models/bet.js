@@ -18,7 +18,7 @@ window.App.Models.Bet = Backbone.Model.extend({
   },
 
   calculateGame: function() {
-    if (this.get('rolltype') == 'under') {
+    if (this.get('rolltype') == 'under' || this.get('rolltype') == '<') {
       this.set('game', this.get('chance'));
     } else {
       this.set('game', 100 - this.get('chance'));
