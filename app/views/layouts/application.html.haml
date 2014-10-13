@@ -35,3 +35,4 @@
     - else
       :javascript
         App.initialize();
+        App.bets.collection.reset(#{@bets.to_json.html_safe});

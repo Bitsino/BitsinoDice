@@ -7,7 +7,6 @@ window.App.Routers.Navigation = Backbone.Router.extend({
 
   defaultRoute: function() {
     App.bets = new App.Views.Bets();
-    App.transactions 
 
     new App.Views.Seeds({ el: $('#seeds').get(0) });
     new App.Views.BetForm();
