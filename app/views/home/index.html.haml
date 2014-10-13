@@ -4,8 +4,12 @@
       #userDetails
         %dl
           %dt Username
-          %dd#username= current_user.try(:username)
-          %dt User ID
+          %dd
+            .input-group
+              %input#username.form-control{:type => "text", :value => current_user.try(:username), :readonly => "true", "data-address" => "#{current_user.try(:username)}"} 
+              %span.input-group-addon
+                = fa_icon "pencil"
+          %dt User Id
           %dd#userId= current_user.try(:id)
       #seeds
         %dl
