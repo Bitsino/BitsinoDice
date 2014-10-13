@@ -20,20 +20,21 @@ window.App.Routers.Navigation = Backbone.Router.extend({
     if (!App.user) {
       //App.loginForm = new App.Views.LoginForm({ el: $('#loginForm').get(0) });
       //new App.Views.RegistrationModal({ el: $('#registerModal').get(0) }).show();
-      randomuser = new App.Models.User();
-      randomuser.set({ 
-        username: randomuser.randomString(),
-        password: randomuser.randomString()
+      App.user = new App.Models.User();
+      App.user.set({ 
+        username: App.user.randomString(),
+        password: App.user.randomString()
       });
-    
-      randomuser.save({}, {
-        success: function(model, response, options) {
-          App.user = model;
+      
+      App.user.save(null, {
+        success: function (model, response) {
           App.trigger('login', model);
+          App.trigger('updateBalance');
         },
-        error: function(model, xhr, options) {
-          
-      }});
+        error: function (model, response) {
+          console.log("error");
+        }
+      });
       
     } else {
       App.trigger('login', App.user);
