@@ -20,6 +20,9 @@
           %ul#logout.nav.navbar-nav.navbar-right{:style => 'display: none'}
             %li
               %a{:href => "#sign-out"} Sign Out
+          %ul#logout.nav.navbar-nav.navbar-right
+            %li
+              %a#register{:href => ""} Register / Login
           %form#loginForm.navbar-form.navbar-right{:role => "form", :style => "display: none"}
             .form-group
               %input.form-control.username{:placeholder => "Username", :type => "text"}/
