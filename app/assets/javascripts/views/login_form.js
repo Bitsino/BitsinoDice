@@ -18,7 +18,7 @@ window.App.Views.LoginForm = Backbone.View.extend({
       username: this.$el.find('.username').val(),
       password: this.$el.find('.password').val()
     });
-
+    alert(this.$el.find('.username').val())
     this.model.save({},
       {
         success: function(model, response, options) {

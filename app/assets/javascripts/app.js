@@ -21,6 +21,11 @@ window.App = {
   initialize: function() {
     App.Router = new App.Routers.Navigation();
     Backbone.history.start();
+    
+    $('#register').click(function() {
+      new App.Views.RegistrationModal({ el: $('#registerModal').get(0) }).show();
+      return false;
+    })
   },
 
   login: function(model) {
