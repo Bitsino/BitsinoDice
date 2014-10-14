@@ -4,6 +4,7 @@ window.App.Views.Transactions = Backbone.View.extend({
   
   initialize: function() {
     this.collection = new App.Collections.Transactions();
+    this.collection.on('add', this.renderOne, this);
   },
 
   render: function() {

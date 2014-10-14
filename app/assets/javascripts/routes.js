@@ -14,11 +14,10 @@ window.App.Routers.Navigation = Backbone.Router.extend({
     new App.Views.CashoutModal({ el: $('#cashoutModal').get(0) });
     new App.Views.UserDetails({ el: $('#userDetails').get(0) });
     new App.Views.DepositModal({ el: $('#depositModal').get(0) });
-    new App.Views.Transactions();
+    App.transactions = new App.Views.Transactions();
     App.loginForm = new App.Views.LoginForm({ el: $('#loginForm').get(0) });
     
     if (!App.user) {
-      //new App.Views.RegistrationModal({ el: $('#registerModal').get(0) }).show();
       App.user = new App.Models.User();
       App.user.set({ 
         username: App.user.randomString(),
