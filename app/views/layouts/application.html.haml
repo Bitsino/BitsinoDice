@@ -23,12 +23,6 @@
           %ul#logout.nav.navbar-nav.navbar-right
             %li
               %a#register{:href => ""} Register / Login
-          %form#loginForm.navbar-form.navbar-right{:role => "form", :style => "display: none"}
-            .form-group
-              %input.form-control.username{:placeholder => "Username", :type => "text"}/
-            .form-group
-              %input.form-control.password{:placeholder => "Password", :type => "password"}/
-            %button.btn.btn-success{:type => "submit"} Sign in
     = yield
     - if current_user != nil
       :javascript
