@@ -65,7 +65,7 @@
             Cashout
       .row
         .col-md-12
-          %button.btn.btn-primary.btn-block{"data-target" => "#transactionModal", "data-toggle" => "modal"}
+          %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal"}
             Transaction History
 .container
   .row
@@ -157,6 +157,6 @@
               %th Amount
               %th Type
               %th Status
-          %tbody
+          %tbody#transactions
         
 #betModal.modal

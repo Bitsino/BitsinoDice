@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :bets
   has_many :transactions
+  has_many :cashouts
 
   before_create :generate_auth_token
 

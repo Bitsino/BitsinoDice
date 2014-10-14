@@ -26,6 +26,11 @@ window.App = {
       new App.Views.RegistrationModal({ el: $('#registerModal').get(0) }).show();
       return false;
     })
+    
+    $('#transButton').click(function() {
+      App.transactions.collection.fetch();
+      return true;
+    })
   },
 
   login: function(model) {

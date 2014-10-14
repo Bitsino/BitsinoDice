@@ -5,6 +5,7 @@ Primedice::Application.routes.draw do
   resources :users,    only: [ :create ]
   resources :bets,     only: [ :show, :create ]
   resources :cashouts, only: [ :create ]
+  resources :transactions, only: [ :index ]
 
   root :to => "home#index"
   

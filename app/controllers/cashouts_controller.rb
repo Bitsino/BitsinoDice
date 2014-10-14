@@ -6,15 +6,14 @@ class CashoutsController < ApplicationController
     
     #if amount > 0
       co = Cashout.new
+      co.user_id = current_user.id
       co.address = cashout_attributes[:address]
       co.amount = amount
       co.save
       #end
 
     respond_to do |format|
-      format.json do
-        render nothing: true
-      end
+      format.json { render json: co.to_json }
     end
   end
 
