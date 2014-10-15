@@ -18,7 +18,7 @@ The site works off a Bitcoin master public key. Bitcoinary can then generate as 
 
 There are no private keys on ONCHAIN.IO or Bitcoinary.
 
-Bitcoinary makes a daily payout request to ONCHAIN.IO. Basically for users who are winners they can select to withdraw funds. Bitcoimnary sends a payout request to ONCHAIN.IO which is turned into a bitcoin transaction paying the users.
+Bitcoinary makes a daily payout request to ONCHAIN.IO. Basically for users who are winners they can select to withdraw funds. Bitcoinary sends a payout request to ONCHAIN.IO which is turned into a bitcoin transaction paying the users.
 
-You get a notification from ONCAHIN.IO and can decide wether or not to sign this transaction.
+You get a notification from ONCHAIN.IO and can decide wether or not to sign this transaction.
 
