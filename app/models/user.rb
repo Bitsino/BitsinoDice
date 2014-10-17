@@ -61,12 +61,12 @@ class User < ActiveRecord::Base
         if bal == nil
           bal = 0
         end
-        bal= bal + coins[2]
+        bal = bal + coins[2] / 100000000.0
         u.balance = bal
         u.save
       end
       cs = ColdStorage.first
-      cs.block = block
+      cs.block = block_end
       cs.save
     end
   end
