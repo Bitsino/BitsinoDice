@@ -8,8 +8,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.json do
         if user.save
-          master = MoneyTree::Node.from_serialized_address(ColdStorage.first.mpk)
-          user.address = master.node_for_path("m/#{user.id}").to_address
+          user.address = OnChain::Sweeper.multi_sig_address_from_mpks(
+            ColdStorage.first.get_extended_keys, "m/#{user.id}")
           user.save
           sign_in user
           render json: user.to_json

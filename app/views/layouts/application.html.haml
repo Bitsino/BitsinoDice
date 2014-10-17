@@ -1,7 +1,8 @@
 !!!
 %html
   %head
-    %title Bitdice
+    %title 
+      = t('project_name')
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = csrf_meta_tags
@@ -15,7 +16,8 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          %a.navbar-brand{:href => "#"} Project name
+          %a.navbar-brand{:href => "#"} 
+            = t('project_name')
         .navbar-right
           %ul#logout.nav.navbar-nav.navbar-right{:style => 'display: none'}
             %li

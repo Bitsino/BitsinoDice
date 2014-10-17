@@ -39,6 +39,10 @@ class HomeController < ApplicationController
 
     @cold_storage = ColdStorage.new(master_public_key_params)
     
+    rs = @cold_storage.redemption_script
+    
+    @cold_storage.fund_address = OnChain::Sweeper.generate_address_of_redemption_script(rs)
+    
     if ColdStorage.count == 0
       respond_to do |format|
         if @cold_storage.save
@@ -56,6 +60,6 @@ class HomeController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def master_public_key_params
-      params.require(:cold_storage).permit(:mpk, :fund_address)
+      params.require(:cold_storage).permit(:mpk)
     end
 end
