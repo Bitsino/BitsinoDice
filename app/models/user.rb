@@ -57,7 +57,12 @@ class User < ActiveRecord::Base
       incoming.each do |coins|
         puts coins[0]
         u = User.find_by_address(coins[0])
-        u.balance = u.balance + coins[2]
+        bal = u.balance
+        if bal == nil
+          bal = 0
+        end
+        bal= bal + coins[2]
+        u.balance = bal
         u.save
       end
       cs = ColdStorage.first
