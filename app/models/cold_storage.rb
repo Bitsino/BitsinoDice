@@ -4,7 +4,6 @@ class ColdStorage < ActiveRecord::Base
   validates :fund_address, presence: true
   
   self.table_name = 'cold_storage'
-  
   def get_addresses 
     mpks = mpk.split("\r\n")
     
