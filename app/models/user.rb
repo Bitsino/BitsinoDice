@@ -40,22 +40,29 @@ class User < ActiveRecord::Base
   end
   
   def self.sweep_for_incoming_coins
-    User.all.each do |user|
-      
-      # lock the user, in case they are gambling right now.
-      user.with_lock do
-        res = OnChain.get_transactions(user.address)
-        res.each do |tx|
-          if tx[0] == user.last_transaction_hash
-            next
-          end
-          user.balance = user.balance + tx[1].to_d
-          user.last_transaction_hash = tx[0]
-        end
-        if user.changed?
-          user.save
-        end
+    
+    block = ColdStorage.first.block
+    if block == nil
+      block = 0
+    end
+    count = User.count
+    keys = ColdStorage.first.get_extended_keys
+    
+    puts keys
+    
+    puts "Sweeping #{count} users starting from block #{block}"
+    incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
+    
+    ActiveRecord::Base.transaction do
+      incoming.each do |coins|
+        puts coins[0]
+        u = User.find_by_address(coins[0])
+        u.balance = u.balance + coins[2]
+        u.save
       end
+      cs = ColdStorage.first
+      cs.block = block
+      cs.save
     end
   end
   
