@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  skip_before_filter :authenticate_user
+  skip_before_filter :authenticate_user, :except => [:update]
 
   def create
     user = User.new(user_attributes)
@@ -17,6 +17,18 @@ class UsersController < ApplicationController
           render json: user.errors.full_messages.to_json, status: :unprocessable_entity
         end
       end
+    end
+  end
+  
+  def update
+    
+    u = current_user
+    u.username = user_attributes[:username]
+    u.password = user_attributes[:password]
+    if u.save
+      render json: current_user.to_json
+    else
+      render json: current_user.errors.full_messages.to_json, status: :unprocessable_entity
     end
   end
 

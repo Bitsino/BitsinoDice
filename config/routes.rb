@@ -2,7 +2,7 @@ Primedice::Application.routes.draw do
   
   devise_for :users, controllers: { sessions: 'sessions' }, skip: [ :registrations ]
 
-  resources :users,    only: [ :create ]
+  resources :users,    only: [ :create, :update ]
   resources :bets,     only: [ :show, :create ]
   resources :cashouts, only: [ :create ]
   resources :transactions, only: [ :index ]

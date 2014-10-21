@@ -1,6 +1,6 @@
 window.App.Models.User = Backbone.Model.extend({
 
-  url: '/users',
+  urlRoot: App.base_url + 'users',
 
   initialize: function() {
     this.on('change:balance', this.updateUserBalance, this);

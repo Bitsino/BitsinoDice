@@ -21,7 +21,6 @@ window.App.Views.RegistrationModal = Backbone.View.extend({
 
   login: function(e) {
     e.preventDefault();
-
     $('.username').val(this.$el.find('#user_username').val());
     $('.password').val(this.$el.find('#user_password').val());
 
@@ -34,6 +33,8 @@ window.App.Views.RegistrationModal = Backbone.View.extend({
     e.preventDefault();
 
     this.model.set({ 
+      id: App.user.id,
+      auth_token: App.user.get('auth_token'),
       username: this.$el.find('#user_username').val(),
       password: this.$el.find('#user_password').val()
     });
@@ -44,7 +45,11 @@ window.App.Views.RegistrationModal = Backbone.View.extend({
       {},
       {
         success: function(model, response, options) {
-          App.trigger('login', model);
+          var user = new App.Models.User(response);
+          $('.username').val(self.$el.find('#user_username').val());
+          $('.password').val(self.$el.find('#user_password').val());
+          App.loginForm.$el.trigger('submit');
+          App.trigger('login', user);
         },
         error: function(model, xhr, options) {
           $(self).before('<div id="loginAlert" class="container"><div class="alert alert-danger"><p><strong>Error</strong> - please check the details you have entered</p></div></div>');
