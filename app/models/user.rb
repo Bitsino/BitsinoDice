@@ -56,11 +56,12 @@ class User < ActiveRecord::Base
     
     ActiveRecord::Base.transaction do
       incoming.each do |coins|
-        puts coins[0]
+        puts coins
         u = User.find_by_address(coins[0])
         
         bal = u.balances.new
-        bal.amount = coins[2] / 100000000.0
+        bal.transaction_hash = coins[3] 
+        bal.amount = coins[2].to_i
         bal.save
       end
       cs = ColdStorage.first

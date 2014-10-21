@@ -96,7 +96,7 @@ GEM
     money-tree (0.8.7)
       ffi
     multi_json (1.10.1)
-    onchain (1.2.0)
+    onchain (1.3.0)
       bitcoin-ruby
       chain-ruby
       money-tree

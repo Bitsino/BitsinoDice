@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20141021062306) do
 
   create_table "balances", force: true do |t|
-    t.string   "transaction"
+    t.string   "transaction_hash"
     t.integer  "amount"
     t.integer  "user_id"
     t.datetime "created_at"
