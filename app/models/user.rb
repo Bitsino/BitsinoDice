@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :bets
   has_many :transactions
   has_many :cashouts
+  has_many :balances
 
   before_create :generate_auth_token
 
@@ -57,13 +58,10 @@ class User < ActiveRecord::Base
       incoming.each do |coins|
         puts coins[0]
         u = User.find_by_address(coins[0])
-        bal = u.balance
-        if bal == nil
-          bal = 0
-        end
-        bal = bal + coins[2] / 100000000.0
-        u.balance = bal
-        u.save
+        
+        bal = u.balances.new
+        bal.amount = coins[2] / 100000000.0
+        bal.save
       end
       cs = ColdStorage.first
       cs.block = block_end
