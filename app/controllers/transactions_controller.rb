@@ -20,6 +20,7 @@ class TransactionsController < ApplicationController
           tx = {}
           tx[:amount] = balance.amount / 100000000.0
           tx[:address] = balance.transaction_hash
+          tx[:status] = "Awaiting Signoff"
           tx[:date] = balance.created_at
           @transactions << tx
         end

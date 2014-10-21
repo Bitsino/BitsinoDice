@@ -4,13 +4,21 @@ class CashoutsController < ApplicationController
 
   def create
     
-    #if amount > 0
+    amount = cashout_attributes[:amount]
+    if amount.to_f > 0.0
       co = Cashout.new
       co.user_id = current_user.id
       co.address = cashout_attributes[:address]
-      co.amount = amount
+      co.amount = (amount.to_f * 100000000).to_i
       co.save
-      #end
+      
+      bal = Balance.new
+      bal.user_id = current_user.id
+      bal.transaction_hash = "Cashout to " + cashout_attributes[:address]
+      bal.amount = 0 - (amount.to_f * 100000000).to_i
+      bal.save
+      
+    end
 
     respond_to do |format|
       format.json { render json: co.to_json }
