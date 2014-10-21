@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
   def balance
     bal = 0
     balances.each{ |balance| bal = bal + balance.amount }
-    return bal
+    return bal / 100000000.0
   end
   
   def self.sweep_for_incoming_coins
@@ -60,7 +60,6 @@ class User < ActiveRecord::Base
     
     ActiveRecord::Base.transaction do
       incoming.each do |coins|
-        puts coins
         u = User.find_by_address(coins[0])
         
         bal = u.balances.new
