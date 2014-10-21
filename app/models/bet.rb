@@ -45,19 +45,16 @@ class Bet < ActiveRecord::Base
     def update_balance
       return if user.nil?
 
-      # Lock the user for balance updates.
-      user.with_lock do
-        if user.balance == nil
-          user.balance = 0
-        end
-        if win?
-          user.balance = user.balance + profit
-          user.save
-        else
-          user.balance = user.balance - amount
-          user.save
-        end
+      b = user.balances.new
+      b.transaction_hash = "Bet #{id}"
+      
+      if win?
+        b.amount = profit
+      else
+        b.amount = (- amount)
       end
+      
+      b.save
     end
 
     def make_payment

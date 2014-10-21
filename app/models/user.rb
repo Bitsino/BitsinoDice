@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
     end
   end
   
+  def balance
+    bal = 0
+    balances.each{ |balance| bal = bal + balance.amount }
+    return bal
+  end
+  
   def self.sweep_for_incoming_coins
     
     block = ColdStorage.first.block
@@ -48,8 +54,6 @@ class User < ActiveRecord::Base
     end
     count = User.count
     keys = ColdStorage.first.get_extended_keys
-    
-    puts keys
     
     puts "Sweeping #{count} users starting from block #{block}"
     incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
