@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141021122555) do
+ActiveRecord::Schema.define(version: 20141022064014) do
 
   create_table "balances", force: true do |t|
     t.string   "transaction_hash"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20141021122555) do
     t.string  "mpk"
     t.string  "fund_address"
     t.integer "block"
+    t.integer "sweep_block"
   end
 
   create_table "secrets", force: true do |t|

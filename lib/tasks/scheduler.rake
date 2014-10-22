@@ -12,3 +12,8 @@ desc "Create payouts"
 task :create_payouts => :environment do
   Cashout.create_onchain_payment_request
 end
+
+desc "Sweep incoming coins to fund"
+task :sweep_tx => :environment do
+  User.sweep_bitcoins_to_onchain_fund
+end

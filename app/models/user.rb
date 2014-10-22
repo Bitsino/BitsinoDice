@@ -73,6 +73,27 @@ class User < ActiveRecord::Base
     end
   end
   
+  def self.sweep_bitcoins_to_onchain_fund
+    
+    block = ColdStorage.first.sweep_block
+    if block == nil
+      block = 0
+    end
+    count = User.count
+    keys = ColdStorage.first.get_extended_keys
+    
+    puts "Sweeping #{count} users starting from block #{block}"
+    incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
+
+    cs = ColdStorage.first
+    cs.block = block_end
+    cs.save
+    
+    tx = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '1STRonGxnFTeJiA7pgyneKknR29AwBM77')
+    
+    puts tx
+  end
+  
   protected 
 
   def generate_auth_token
