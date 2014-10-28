@@ -89,7 +89,7 @@ class User < ActiveRecord::Base
     cs.block = block_end
     cs.save
     
-    tx = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '1STRonGxnFTeJiA7pgyneKknR29AwBM77')
+    tx = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5')
     
     puts tx
   end
