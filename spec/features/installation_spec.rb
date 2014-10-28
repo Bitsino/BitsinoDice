@@ -1,11 +1,15 @@
 require "rails_helper"
 
-feature 'User registration and logon' do
-  scenario 'can we register correctly', :js => true do
+feature 'Install the software.' do
+  scenario 'supply keys and hit go.', :js => true do
     
     visit root_path
     
-    page.save_screenshot('tmp/screenshot.png')
+    fill_in 'cold_storage_mpk', :with => 'xpub69GZWTQPtwQRriHyYuYJpDgAUrHHRD8ksBbQ61QpY1CbSUrcW7udYcZ1YLuLVtSQx9xW5QApiGidDfmFVLEz4Lep3AoCGD2HQmfvXwH1GMt'
+    
+    click_on "Save"
+    
+    expect(page).to have_text 'BitDice Register'
     
   end
 end
