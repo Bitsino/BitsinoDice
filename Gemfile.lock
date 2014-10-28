@@ -40,6 +40,15 @@ GEM
     bootstrap-sass (3.0.3.0)
       sass (~> 3.2)
     builder (3.1.4)
+    capybara (2.4.4)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
+    capybara-webkit (1.3.1)
+      capybara (>= 2.0.2, < 2.5.0)
+      json
     chain-bitcoin-ruby (0.0.1)
     chain-ruby (2.0.1)
       chain-bitcoin-ruby (= 0.0.1)
@@ -50,6 +59,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    database_cleaner (1.3.0)
     devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -57,10 +67,16 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    diff-lcs (1.2.5)
     encryptor (1.3.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.1)
+    factory_girl (4.5.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.5.0)
+      factory_girl (~> 4.5.0)
+      railties (>= 3.0.0)
     faye-websocket (0.7.5)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.5)
@@ -92,10 +108,13 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     minitest (4.7.5)
     money-tree (0.8.7)
       ffi
     multi_json (1.10.1)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
     onchain (1.3.2)
       bitcoin-ruby
       chain-ruby
@@ -129,6 +148,22 @@ GEM
       json (~> 1.4)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
+    rspec-core (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-expectations (3.0.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.0.0)
+    rspec-mocks (3.0.4)
+      rspec-support (~> 3.0.0)
+    rspec-rails (3.0.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.0.0)
+      rspec-expectations (~> 3.0.0)
+      rspec-mocks (~> 3.0.0)
+      rspec-support (~> 3.0.0)
+    rspec-support (3.0.4)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -165,6 +200,8 @@ GEM
     warden (1.2.3)
       rack (>= 1.0)
     websocket-driver (0.3.5)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -172,8 +209,12 @@ PLATFORMS
 DEPENDENCIES
   attr_encrypted
   bootstrap-sass (~> 3.0.3.0)
+  capybara
+  capybara-webkit
   coffee-rails (~> 4.0.0)
+  database_cleaner
   devise
+  factory_girl_rails
   faye-websocket
   font-awesome-rails
   haml-rails
@@ -186,6 +227,7 @@ DEPENDENCIES
   puma!
   rails (= 4.0.3)
   rails_12factor
+  rspec-rails (~> 3.0.0)
   sass-rails (~> 4.0.0)
   sdoc
   socket.io-rails
