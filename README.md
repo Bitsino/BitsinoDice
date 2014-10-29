@@ -4,6 +4,8 @@
 
 ## Installation
 
+This is still a work in progress and won't be complete until Dec 1st 2014.
+
 Bitcoinary is designed to install easily into the cloud using Heroku. You can also install to your own server.
 
 or simply deploy dirctly to Heroku.
