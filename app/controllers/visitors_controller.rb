@@ -16,6 +16,7 @@ class VisitorsController < ApplicationController
         
         if current_user
           @transactions = Transaction.order('created_at DESC').limit(25)
+          @qr = RQRCode::QRCode.new(current_user.address)
         end
       end
       format.json do

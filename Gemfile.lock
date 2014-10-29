@@ -156,6 +156,7 @@ GEM
       json (~> 1.4)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
+    rqrcode (0.4.2)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -250,6 +251,7 @@ DEPENDENCIES
   rails (= 4.1.6)
   rails_12factor
   rails_layout
+  rqrcode
   rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)

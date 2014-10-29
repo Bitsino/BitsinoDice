@@ -16,6 +16,7 @@ gem 'sendgrid'
 gem "font-awesome-rails"
 gem 'figaro'
 gem 'onchain'
+gem 'rqrcode'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

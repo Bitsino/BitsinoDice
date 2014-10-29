@@ -153,7 +153,14 @@
       .modal-body
         %p.center-block Please send funds to:
         %h3.center-block
-        #qrcode.center-block
+          - if current_user != nil
+            = current_user.address
+            %table.qr-code
+              - @qr.modules.each_index do |x|
+                %tr
+                  - @qr.modules.each_index do |y|
+                    %td{:class => (@qr.dark?(x,y) ? 'black' : 'white')}
+                    
 #cashoutModal.modal.fade
   .modal-dialog
     .modal-content
