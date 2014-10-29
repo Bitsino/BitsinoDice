@@ -9,6 +9,13 @@ class User < ActiveRecord::Base
   has_many :transactions
   has_many :cashouts
   has_many :balances
+  
+  def address
+
+    return OnChain::Sweeper.multi_sig_address_from_mpks(
+      ColdStorage.get_extended_keys, "m/#{id}")
+      
+  end
 
   def balance
     bal = 0
@@ -23,7 +30,7 @@ class User < ActiveRecord::Base
       block = 0
     end
     count = User.count
-    keys = ColdStorage.first.get_extended_keys
+    keys = ColdStorage.get_extended_keys
     
     puts "Sweeping #{count} users starting from block #{block}"
     incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
