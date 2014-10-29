@@ -15,6 +15,7 @@ class BetsController < ApplicationController
     bet.save
 
     respond_to do |format|
+      format.html { redirect_to root_url }
       format.json { render json: bet.to_json }
     end
   end

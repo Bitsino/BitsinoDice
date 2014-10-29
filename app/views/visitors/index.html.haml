@@ -1,0 +1,182 @@
+.container
+  .row
+    .col-md-3
+      #userDetails
+        %dl
+          %dt Name
+          %dd
+            .input-group
+              %input#username.form-control{:type => "text", :value => current_user.try(:name), :readonly => "true", "data-address" => "#{current_user.try(:username)}"} 
+              %span.input-group-addon
+                = fa_icon "pencil"
+          %dt User Id
+          %dd#userId= current_user.try(:id)
+      #seeds
+        %dl
+          %dt Server Seed
+          %dd
+            %input#server-seed.form-control{:readonly => "true", :type => "text", :value => session[:server_seed]}
+          %dt Client Seed
+          %dd
+            %input#client-seed.form-control{:type => "text"}/
+    .col-md-6.well
+      = form_for(@bet, html: { role: 'form', class: 'inline-form', id: 'betForm' }) do |f|
+        .row
+          .col-md-6
+            %label Amount
+            = f.text_field :amount, class: 'form-control input-small', placeholder: 'Amount', value: '0'
+          .col-md-6
+            %label Profit
+            %input#bet_profit.form-control{:readonly => "true", :type => "text", :value => "0"}/
+        .row
+          .col-md-4
+            .form-group
+              %label Game
+              = f.text_field :game, class: 'form-control', readonly: true, value: '49.50'
+              #rolltype
+                %label.radio-inline
+                  = f.radio_button :rolltype, 'over'
+                  Over
+                %label.radio-inline
+                  = f.radio_button :rolltype, 'under'
+                  Under
+          .col-md-4
+            %label Multipler
+            = f.text_field :multiplier, class: 'form-control', placeholder: 'Payout', value: '2'
+          .col-md-4
+            %label Chance
+            %input#bet_chance.form-control{:type => "text", :value => "49.50"}/
+        .form-group{:style => "margin-top: 10px"}
+          = f.submit 'Roll Dice', class: 'btn btn-block btn-primary'
+    .col-md-3.btc-options
+      .row
+        .col-md-12
+          %label Balance
+          .input-group
+            %span.input-group-addon BTC
+            %input#balance.form-control{:type => "text", :value => current_user.try(:balance), :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
+      .row
+        .col-md-12
+          %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal"}
+            Deposit
+      .row
+        .col-md-12
+          %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal"}
+            Cashout
+      .row
+        .col-md-12
+          %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal"}
+            Transaction History
+.container
+  .row
+    .col-md-12
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Bet ID
+            %th User
+            %th Time
+            %th Bet
+            %th Payout
+            %th Game
+            %th Roll
+            %th Profit
+        %tbody#bets
+          - @bets.each do |bet|
+            %tr
+              %td.text-primary
+                = bet.id
+              %td
+                -# = bet.username
+              %td
+                = bet.created_at
+              %td
+                = bet.amount
+              %td
+                = bet.multiplier
+              %td
+                = bet.rolltype
+              %td
+                = bet.roll
+              %td
+                = bet.profit
+        
+#registerModal.modal.fade{"data-backdrop" => "static"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Register/Sign In
+      .modal-body
+        %form{:role => "form"}
+          .row
+            .col-md-12
+              %label Username
+              %input#user_username.form-control{:name => "username", :type => "text"}/
+            .col-md-12
+              %label Password
+              %input#user_password.form-control{:name => "password", :type => "password"}/
+            .col-md-12
+              %input.btn.btn-primary{:style => "margin-top: 10px", :type => "submit", :value => "Register"}/
+              %a.btn.btn-primary{:href => "javascript:void(0)", :style => "margin-top: 10px"} Sign In
+#depositModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Deposit
+      .modal-body
+        %p.center-block Please send funds to:
+        %h3.center-block
+        #qrcode.center-block
+#cashoutModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Cashout
+        %p Please note a fee of 0.0005 BTC will be taken from your balance.
+      .modal-body
+        %form{:role => "form"}
+          .row
+            .col-md-12
+              %label Address
+              %input#address.form-control{:name => "address", :type => "text"}/
+            .col-md-12
+              %label Amount
+              %input#amount.form-control{:name => "amount", :type => "text"}/
+            .col-md-12
+              %input.btn.btn-primary{:style => "margin-top: 10px", :type => "submit", :value => "Cashout"}/
+#transactionModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Transaction History
+      .modal-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Amount
+              %th Type
+              %th Status
+              %th Date
+          %tbody#transactions
+        
+#betModal.modal

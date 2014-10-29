@@ -12,21 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.cookie
 //= require turbolinks
-//= require socket.io
-//= require qrcode.min
-//= require moment.min
-//= require jquery.mask.min
-//= require underscore-min
-//= require backbone-min
+//= require bootstrap-sprockets
 //= require chance.min
-//= require bootstrap
-//= require handlebars
-//= require helpers
-//= require app
-//= require routes
-//= require_tree ./templates
-//= require_tree ./models
-//= require_tree ./collections
-//= require_tree ./views
+//= require_tree .
+var initialise = function() {
+    
+   $('#client-seed').val(chance.hash({length: 16}));
+};
+
+$(document).ready(initialise);
+$(document).on('page:load', initialise);
