@@ -47,7 +47,11 @@
             %label Chance
             %input#bet_chance.form-control{:type => "text", :value => "49.50"}/
         .form-group{:style => "margin-top: 10px"}
-          = f.submit 'Roll Dice', class: 'btn btn-block btn-primary'
+          - if current_user == nil
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', disabled: 'disabled'
+          - else 
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary'
+          
     .col-md-3.btc-options
       .row
         .col-md-12
@@ -55,18 +59,31 @@
           .input-group
             %span.input-group-addon BTC
             %input#balance.form-control{:type => "text", :value => current_user.try(:balance), :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
-      .row
+      .row{ style: 'margin-top:10px' }
         .col-md-12
-          %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal"}
-            Deposit
-      .row
+          - if current_user == nil
+            %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal", disabled: 'disabled' }
+              Deposit
+          - else 
+            %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal"}
+              Deposit
+      .row{ style: 'margin-top:10px' }
         .col-md-12
-          %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal"}
-            Cashout
-      .row
+          - if current_user == nil
+            %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal", disabled: 'disabled'}
+              Cashout
+          - else
+            %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal"}
+              Cashout
+          
+      .row{ style: 'margin-top:10px' }
         .col-md-12
-          %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal"}
-            Transaction History
+          - if current_user == nil
+            %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal", disabled: 'disabled'}
+              Transaction History
+          - else
+            %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal"}
+              Transaction History
 .container
   .row
     .col-md-12
