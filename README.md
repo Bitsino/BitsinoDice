@@ -6,6 +6,10 @@
 
 Bitcoinary is designed to install easily into the cloud using Heroku. You can also install to your own server.
 
+or simply deploy dirctly to Heroku.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/onchain/bitcoinary)
+
 ## Security
 
 ### Bitcoinary does not require you to install bitcoind
