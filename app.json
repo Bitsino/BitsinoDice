@@ -25,7 +25,7 @@
       "value": "myapp.herokuapp.com",
       "required": true
     },
-    "MPKS": {
+    "master_public_keys": {
       "description": "Master public keys taked from the OnChain fund you want to use.",
       "value": "MPK1,MPK2,MPK3",
       "required": true
