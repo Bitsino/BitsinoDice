@@ -14,6 +14,7 @@ gem 'devise'
 gem 'haml-rails'
 gem 'sendgrid'
 gem "font-awesome-rails"
+gem 'figaro'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

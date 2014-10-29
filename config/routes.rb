@@ -9,6 +9,5 @@ Rails.application.routes.draw do
   resources :cashouts, only: [ :create ]
   resources :transactions, only: [ :index ]
   
-  get 'configuration' => 'home#configure'
-  post 'cold_storages' => 'home#configure_create'
+  get 'configuration' => 'visitors#configure'
 end

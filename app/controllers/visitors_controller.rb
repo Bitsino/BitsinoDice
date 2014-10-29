@@ -27,4 +27,8 @@ class VisitorsController < ApplicationController
     end
   end
   
+  # We get here if our ENV vars are not set.
+  def configure
+  end
+  
 end

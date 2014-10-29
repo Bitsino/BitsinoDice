@@ -1,0 +1,26 @@
+.container
+  .row
+    %h3
+      Secure Cold Storage Installation
+    %p 
+      To configure 
+      we need to connect to the ONCHAIN.IO cold storage service. ONCHAIN.IO provides multi signature
+      funds to secure yours and your users money.
+    %p
+      Create or log into your account on ONCHAIN.IO and complete the following steps.
+      %ol
+        %li
+          Go to the funds menu and create a new fund.
+        %li
+          Add up to 10 people to the fund. People in the fund will have the ability to sign transactions.
+        %li
+          Click the send invites button.
+        %li 
+          Wait until all your invitees have accepted the invitations and added their public keys to the
+          fund.
+        %li
+          You need to create an environment variable called 'master_public_keys' and set this to the value of each public key. Comma separated.
+          
+        %textarea.form-control
+          master_public_keys=xpub69GZWTQPtwQRriHyYuYJpDgAUrHHRD8ksBbQ61QpY1CbSUrcW7udYcZ1YLuLVtSQx9xW5QApiGidDfmFVLEz4Lep3AoCGD2HQmfvXwH1GMt,xpub69GZWTQPtwQRriHyYuYJpDgAUrHHRD8ksBbQ61QpY1CbSUrcW7udYcZ1YLuLVtSQx9xW5QApiGidDfmFVLEz4Lep3AoCGD2HQmfvXwH1GMt
+
