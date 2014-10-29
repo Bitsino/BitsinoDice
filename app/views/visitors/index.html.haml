@@ -154,7 +154,7 @@
         %p.center-block Please send funds to:
         %h3.center-block
           - if current_user != nil
-            = current_user.address
+            = current_user.bitcoin_address
             %table.qr-code
               - @qr.modules.each_index do |x|
                 %tr

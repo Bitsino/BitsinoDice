@@ -1,8 +1,5 @@
 class ColdStorage < ActiveRecord::Base
   
-  validates :mpk, presence: true
-  validates :fund_address, presence: true
-  
   self.table_name = 'cold_storage'
   def get_addresses 
     mpks = Figaro.env.master_public_keys.split(",")

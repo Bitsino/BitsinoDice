@@ -9,13 +9,6 @@ class User < ActiveRecord::Base
   has_many :transactions
   has_many :cashouts
   has_many :balances
-  
-  def address
-
-    return OnChain::Sweeper.multi_sig_address_from_mpks(
-      ColdStorage.get_extended_keys, "m/#{id}")
-      
-  end
 
   def balance
     bal = 0
@@ -23,9 +16,18 @@ class User < ActiveRecord::Base
     return bal / 100000000.0
   end
   
+  def self.get_cold_storage
+    cs = ColdStorage.first
+    if cs == nil
+      cs = ColdStorage.create
+      cs.save
+    end
+    return cs
+  end
+  
   def self.sweep_for_incoming_coins
     
-    block = ColdStorage.first.block
+    block = get_cold_storage.block
     if block == nil
       block = 0
     end
@@ -37,7 +39,7 @@ class User < ActiveRecord::Base
     
     ActiveRecord::Base.transaction do
       incoming.each do |coins|
-        u = User.find_by_address(coins[0])
+        u = User.find_by_bitcoin_address(coins[0])
         
         bal = u.balances.new
         bal.transaction_hash = coins[3] 
@@ -52,7 +54,7 @@ class User < ActiveRecord::Base
   
   def self.sweep_bitcoins_to_onchain_fund
     
-    block = ColdStorage.first.sweep_block
+    block = get_cold_storage.sweep_block
     if block == nil
       block = 0
     end

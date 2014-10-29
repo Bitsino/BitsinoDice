@@ -15,8 +15,15 @@ class VisitorsController < ApplicationController
         @bets    = Bet.order('created_at DESC').limit(25)
         
         if current_user
+          
+          if current_user.bitcoin_address == nil
+            current_user.bitcoin_address = OnChain::Sweeper.multi_sig_address_from_mpks(
+              ColdStorage.get_extended_keys, "m/#{current_user.id}")
+            current_user.save
+          end
+          
           @transactions = Transaction.order('created_at DESC').limit(25)
-          @qr = RQRCode::QRCode.new(current_user.address)
+          @qr = RQRCode::QRCode.new(current_user.bitcoin_address)
         end
       end
       format.json do
