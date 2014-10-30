@@ -113,7 +113,7 @@
               %td
                 = bet.amount
               %td
-                = bet.multiplier
+                = bet.multiplier.round(2)
               %td
                 - if bet.rolltype == 'under'
                   <

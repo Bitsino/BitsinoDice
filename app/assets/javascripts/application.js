@@ -36,7 +36,7 @@ var initialise = function() {
  
    amount = $("#amount-slider").val();
    prob = parseFloat($("#probability-slider").val()).toFixed(1);
-   multiplier = (99 / prob).toFixed(1);
+   multiplier = (99 / prob).toFixed(2);
    profit = (amount * multiplier / 100000000.0).toFixed(4)
  
    $('#roll-prob').val(prob)
