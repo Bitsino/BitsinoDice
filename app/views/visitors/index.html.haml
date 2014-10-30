@@ -124,7 +124,10 @@
               %td
                 = bet.roll
               %td
-                = (bet.profit / 100000000).round(6)
+                - if bet.win?
+                  = (bet.profit / 100000000).round(6)
+                - else
+                  = (-(bet.amount / 100000000)).round(6)
         
 #registerModal.modal.fade{"data-backdrop" => "static"}
   .modal-dialog
