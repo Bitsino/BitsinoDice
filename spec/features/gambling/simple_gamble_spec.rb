@@ -57,9 +57,6 @@ feature 'When gambling', :js => true do
     page.find("#roll-button").click
 
     bal_after = page.find('#balance').value
-
-    page.driver.resize_window(900, 700)
-    page.save_screenshot('tmp/screenshot1.jpg')
     
     expect(bal_before).to_not eq(bal_after)
   end
@@ -74,7 +71,7 @@ feature 'When gambling', :js => true do
     
     amount = page.find('#amount-view').value
     
-    expect(amount).to eq("0.0001")
+    expect(amount).to eq("0.00010")
     
     button = page.find('#roll-button').value
     
