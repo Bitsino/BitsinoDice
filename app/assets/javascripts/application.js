@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require chance.min
 //= require_tree .
 var initialise = function() {
     

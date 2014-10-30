@@ -22,9 +22,6 @@ feature 'User delete', :devise, :js do
     visit edit_user_registration_path(user)
     click_button 'Cancel my account'
     
-    
-    page.save_screenshot('tmp/screenshot.png')
-    
     expect(page).to have_content I18n.t 'devise.registrations.destroyed'
   end
 
