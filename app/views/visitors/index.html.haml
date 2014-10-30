@@ -29,8 +29,8 @@
         .row{ style: 'margin-top:20px' }
           .col-md-12
             %label Amount of Bet.
-            = f.text_field :amount, id: 'amount-slider', 'data-slider' => "true", 'data-slider-step' => '10000', 
-              'data-slider-range' => '0,50000'
+            = f.text_field :amount, id: 'amount-slider', 'data-slider' => "true", 'data-slider-step' => '1000', 
+              'data-slider-range' => @data_slider_range
         .row{ style: 'margin-top:20px' }
           .col-md-3
             .form-group

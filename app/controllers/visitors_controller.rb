@@ -21,6 +21,8 @@ class VisitorsController < ApplicationController
             current_user.save
           end
           
+          @data_slider_range = "0," + (current_user.balance * 100000000).to_s
+          
           @transactions = Transaction.order('created_at DESC').limit(25)
           @qr = RQRCode::QRCode.new(current_user.bitcoin_address)
         end

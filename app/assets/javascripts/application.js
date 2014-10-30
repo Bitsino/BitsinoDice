@@ -41,7 +41,7 @@ var initialise = function() {
  
    $('#roll-prob').val(prob)
    $('#bet_profit').val(profit)
-   $('#amount-view').val((amount / 100000000.00).toFixed(4));
+   $('#amount-view').val((amount / 100000000.00).toFixed(5));
    $('#bet_chance').val(prob + '%');
    $('#roll-button').val("Click for a " + prob + "% chance of multiplying your bet by " + multiplier);
   }
