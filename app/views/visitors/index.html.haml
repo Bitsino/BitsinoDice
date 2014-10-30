@@ -29,7 +29,8 @@
         .row{ style: 'margin-top:20px' }
           .col-md-12
             %label Amount of Bet.
-            %input#amount-slider{ type: 'text', 'data-slider' => "true", 'data-slider-step' => '10000', 'data-slider-range' => '0,50000', value: "0" }
+            = f.text_field :amount, id: 'amount-slider', 'data-slider' => "true", 'data-slider-step' => '10000', 
+              'data-slider-range' => '0,50000'
         .row{ style: 'margin-top:20px' }
           .col-md-3
             .form-group
@@ -47,7 +48,7 @@
             %input#bet_chance.form-control{:readonly => "true", :type => "text", :value => "49.50%"}/
           .col-md-3
             %label Amount of Bet
-            = f.text_field :amount, class: 'form-control input-small', readonly: "true", id: 'amount-view', placeholder: 'Amount', value: '0'
+            %input{ type: 'text', class: 'form-control input-small', readonly: "true", id: 'amount-view', placeholder: 'Amount', value: '0' } 
         .form-group{:style => "margin-top: 10px"}
           - if current_user == nil
             = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button', disabled: 'disabled'
@@ -111,7 +112,7 @@
                 = time_ago_in_words(bet.created_at)
                 ago.
               %td
-                = bet.amount
+                = (bet.amount / 100000000).round(6)
               %td
                 = bet.multiplier.round(2)
               %td
@@ -123,7 +124,7 @@
               %td
                 = bet.roll
               %td
-                = bet.profit
+                = (bet.profit / 100000000).round(6)
         
 #registerModal.modal.fade{"data-backdrop" => "static"}
   .modal-dialog
