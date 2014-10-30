@@ -21,6 +21,11 @@ class VisitorsController < ApplicationController
             current_user.save
           end
           
+          last_bet = current_user.bets.last
+          if last_bet != nil and last_bet.amount < (current_user.balance * 100000000)
+            @bet.amount = last_bet.amount
+          end
+          
           @data_slider_range = "0," + (current_user.balance * 100000000).to_s
           
           @transactions = Transaction.order('created_at DESC').limit(25)
