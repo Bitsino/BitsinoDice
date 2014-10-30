@@ -20,6 +20,10 @@ class Bet < ActiveRecord::Base
       username: user.try(:username) || 'Guest'
     }
   end
+  
+  def multiplier
+   return (99 / game)
+  end
 
   def profit
     (amount * (multiplier).to_d) - amount

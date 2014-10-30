@@ -8,7 +8,6 @@ class VisitorsController < ApplicationController
         @bet  = Bet.new.tap do |b|
           b.server_seed = session[:server_seed]
           b.amount      = 0
-          b.multiplier  = 2
           b.game        = 49.50
         end
 

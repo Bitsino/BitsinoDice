@@ -17,7 +17,34 @@
 //= require_tree .
 var initialise = function() {
     
-   $('#client-seed').val(chance.hash({length: 16}));
+  var client_seed = chance.hash({length: 16});
+  $('#client-seed').val(client_seed);
+  $('#client-seed-form').val(client_seed);
+
+
+  update_button_text();
+
+  $("#amount-slider").bind("slider:changed", function (event, data) {
+   update_button_text();
+  });
+
+  $("#probability-slider").bind("slider:changed", function (event, data) {
+   update_button_text();
+  });
+
+  function update_button_text() {
+ 
+   amount = $("#amount-slider").val();
+   prob = parseFloat($("#probability-slider").val()).toFixed(1);
+   multiplier = (99 / prob).toFixed(1);
+   profit = (amount * multiplier / 100000000.0).toFixed(4)
+ 
+   $('#roll-prob').val(prob)
+   $('#bet_profit').val(profit)
+   $('#amount-view').val((amount / 100000000.00).toFixed(4));
+   $('#bet_chance').val(prob + '%');
+   $('#roll-button').val("Click for a " + prob + "% chance of multiplying your bet by " + multiplier);
+  }
 };
 
 $(document).ready(initialise);

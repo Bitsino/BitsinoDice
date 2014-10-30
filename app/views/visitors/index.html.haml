@@ -22,35 +22,37 @@
     .col-md-6.well
       = form_for(@bet, html: { role: 'form', class: 'inline-form', id: 'betForm' }) do |f|
         .row
-          .col-md-6
-            %label Amount
-            = f.text_field :amount, class: 'form-control input-small', placeholder: 'Amount', value: '0'
-          .col-md-6
-            %label Profit
-            %input#bet_profit.form-control{:readonly => "true", :type => "text", :value => "0"}/
-        .row
-          .col-md-4
+          .col-md-12
+            %label Probability of winning
+            %input#probability-slider{ type: 'text', 'data-slider' => "true", 
+              'data-slider-range' => '0.5,99.5', 'data-slider-step' => '0.5', value: "49.5" }
+        .row{ style: 'margin-top:20px' }
+          .col-md-12
+            %label Amount of Bet.
+            %input#amount-slider{ type: 'text', 'data-slider' => "true", 'data-slider-step' => '10000', 'data-slider-range' => '0,50000', value: "0" }
+        .row{ style: 'margin-top:20px' }
+          .col-md-3
             .form-group
-              %label Game
-              = f.text_field :game, class: 'form-control', readonly: true, value: '49.50'
-              #rolltype
-                %label.radio-inline
-                  = f.radio_button :rolltype, 'over'
-                  Over
-                %label.radio-inline
-                  = f.radio_button :rolltype, 'under'
-                  Under
-          .col-md-4
-            %label Multipler
-            = f.text_field :multiplier, class: 'form-control', placeholder: 'Payout', value: '2'
-          .col-md-4
-            %label Chance
-            %input#bet_chance.form-control{:type => "text", :value => "49.50"}/
+              %label Roll Under
+              .input-group
+                %span.input-group-addon <
+                = f.text_field :game, class: 'form-control', readonly: true, value: '49.50', id: 'roll-prob'
+                = f.hidden_field :rolltype
+                = f.hidden_field :client_seed, id: 'client-seed-form'
+          .col-md-3
+            %label For a profit of
+            %input#bet_profit.form-control{:readonly => "true", :type => "text", :value => "0"}/
+          .col-md-3
+            %label With probability
+            %input#bet_chance.form-control{:readonly => "true", :type => "text", :value => "49.50%"}/
+          .col-md-3
+            %label Amount of Bet
+            = f.text_field :amount, class: 'form-control input-small', readonly: "true", id: 'amount-view', placeholder: 'Amount', value: '0'
         .form-group{:style => "margin-top: 10px"}
           - if current_user == nil
-            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', disabled: 'disabled'
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button', disabled: 'disabled'
           - else 
-            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary'
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button'
           
     .col-md-3.btc-options
       .row

@@ -23,7 +23,7 @@ class BetsController < ApplicationController
   protected
 
     def bet_attributes
-      params.require(:bet).permit(:client_seed, :amount, :game, :multiplier, :rolltype)
+      params.require(:bet).permit(:client_seed, :amount, :game, :rolltype)
     end
 
 end
