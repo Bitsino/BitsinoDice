@@ -104,15 +104,20 @@
               %td.text-primary
                 = bet.id
               %td
-                -# = bet.username
+                = bet.user.name
               %td
-                = bet.created_at
+                = time_ago_in_words(bet.created_at)
+                ago.
               %td
                 = bet.amount
               %td
                 = bet.multiplier
               %td
-                = bet.rolltype
+                - if bet.rolltype == 'under'
+                  <
+                - else
+                  >
+                = bet.game
               %td
                 = bet.roll
               %td
