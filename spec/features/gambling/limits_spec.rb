@@ -28,6 +28,7 @@ feature 'When hacking' do
     
     signin('test@example.com', 'please123')
     
+    # Bet above the limit
     find("#amount-slider").set "200000000"
     
     page.find("#roll-button").click
@@ -35,6 +36,15 @@ feature 'When hacking' do
     b = Bet.all
     
     expect(b.count).to eq(0)
+    
+    # Bet just below the limit
+    find("#amount-slider").set "9999999"
+    
+    page.find("#roll-button").click
+    
+    b = Bet.all
+    
+    expect(b.count).to eq(1)
   end
 
 end
