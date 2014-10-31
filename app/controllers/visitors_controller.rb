@@ -15,7 +15,7 @@ class VisitorsController < ApplicationController
         
         @transactions = []
 
-        @bets    = Bet.order('created_at DESC').limit(25)
+        @bets = Bet.latest_bets
         
         if current_user
           
@@ -46,7 +46,7 @@ class VisitorsController < ApplicationController
         
     respond_to do |format|
       format.html do
-        @bets = Bet.order('created_at DESC').limit(25)
+        @bets = Bet.latest_bets
         render :layout => false
       end
     end    

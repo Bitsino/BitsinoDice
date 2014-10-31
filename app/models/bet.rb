@@ -36,6 +36,10 @@ class Bet < ActiveRecord::Base
       roll > game
     end
   end
+  
+  def self.latest_bets
+    bets = Bet.order('created_at DESC').limit(25)
+  end
 
   protected
 
