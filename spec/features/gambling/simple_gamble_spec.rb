@@ -35,7 +35,7 @@ feature 'When gambling', :js => true do
     
     bal = page.find('#balance').value
     
-    expect(bal).to eq('0.0005')
+    expect(bal).to eq('0.005')
   end
   
   scenario 'does the users balance increase or decrease with each bet' do
