@@ -10,6 +10,8 @@ class VisitorsController < ApplicationController
           b.amount      = 0
           b.game        = 49.50
         end
+        
+        @cashout = Cashout.new
 
         @bets    = Bet.order('created_at DESC').limit(25)
         

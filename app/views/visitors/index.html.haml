@@ -173,29 +173,9 @@
                 %tr
                   - @qr.modules.each_index do |y|
                     %td{:class => (@qr.dark?(x,y) ? 'black' : 'white')}
-                    
-#cashoutModal.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span.aria-hidden
-            &times;
-          %span.sr-only
-            Close
-        %h4.modal-title Cashout
-        %p Please note a fee of 0.0005 BTC will be taken from your balance.
-      .modal-body
-        %form{:role => "form"}
-          .row
-            .col-md-12
-              %label Address
-              %input#address.form-control{:name => "address", :type => "text"}/
-            .col-md-12
-              %label Amount
-              %input#amount.form-control{:name => "amount", :type => "text"}/
-            .col-md-12
-              %input.btn.btn-primary#cashout-button{:style => "margin-top: 10px", :type => "submit", :value => "Cashout"}/
+
+= render :partial => "cashout_modal"
+              
 #transactionModal.modal.fade
   .modal-dialog
     .modal-content

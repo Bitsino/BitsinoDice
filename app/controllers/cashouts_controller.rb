@@ -21,6 +21,7 @@ class CashoutsController < ApplicationController
     end
 
     respond_to do |format|
+      format.html { redirect_to root_url }
       format.json { render json: co.to_json }
     end
   end

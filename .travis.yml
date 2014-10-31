@@ -1,2 +1,3 @@
 language: ruby
+env: master_public_keys=xpub69GZWTQPtwQRriHyYuYJpDgAUrHHRD8ksBbQ61QpY1CbSUrcW7udYcZ1YLuLVtSQx9xW5QApiGidDfmFVLEz4Lep3AoCGD2HQmfvXwH1GMt
 script: xvfb-run bundle exec rake

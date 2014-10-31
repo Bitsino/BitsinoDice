@@ -1,0 +1,23 @@
+#cashoutModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Cashout
+        %p Please note a fee of 0.0005 BTC will be taken from your balance.
+      .modal-body
+        = form_for(@cashout, html: { role: 'form', class: 'inline-form', id: 'cashoutForm' }) do |f|
+          .row
+            .col-md-12
+              %label Address
+
+              = f.text_field :address, class: 'form-control', id: 'address'
+            .col-md-12
+              %label Amount
+              = f.text_field :amount, class: 'form-control', id: 'amount'
+            .col-md-12
+              %input.btn.btn-primary#cashout-button{:style => "margin-top: 10px", :type => "submit", :value => "Cashout"}/
