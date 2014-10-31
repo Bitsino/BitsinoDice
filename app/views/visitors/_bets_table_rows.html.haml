@@ -1,0 +1,28 @@
+- @bets.each do |bet|
+  %tr
+    %td.text-primary
+      = bet.id
+    %td
+      = bet.user.name
+    %td
+      = time_ago_in_words(bet.created_at)
+      ago.
+    %td
+      = (bet.amount / 100000000).round(6)
+    %td
+      = bet.multiplier.round(2)
+    %td
+      - if bet.rolltype == 'under'
+        <
+      - else
+        >
+      = bet.game
+    %td
+      = bet.roll
+    %td
+      - if bet.win? or bet.amount == 0
+        %span.label.label-success
+          = (bet.profit / 100000000).round(6)
+      - else
+        %span.label.label-default
+          = (-(bet.amount / 100000000)).round(6)

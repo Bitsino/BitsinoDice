@@ -16,6 +16,10 @@
 //= require bootstrap-sprockets
 //= require_tree .
 var initialise = function() {
+  
+  setInterval(function() { 
+    $('#bets').load('/bet_table');
+  }, 2000); 
     
   var client_seed = chance.hash({length: 16});
   $('#client-seed').val(client_seed);

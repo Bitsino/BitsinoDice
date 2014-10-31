@@ -42,6 +42,16 @@ class VisitorsController < ApplicationController
     end
   end
   
+  def bet_table
+        
+    respond_to do |format|
+      format.html do
+        @bets = Bet.order('created_at DESC').limit(25)
+        render :layout => false
+      end
+    end    
+  end
+  
   def make_sure_user_address_is_set
     if current_user.bitcoin_address == nil
       current_user.bitcoin_address = OnChain::Sweeper.multi_sig_address_from_mpks(

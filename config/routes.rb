@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :transactions, only: [ :index ]
   
   get 'configuration' => 'visitors#configure'
+  
+  get "/bet_table" => "visitors#bet_table"
 end
