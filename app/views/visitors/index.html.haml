@@ -130,70 +130,9 @@
                 - else
                   %span.label.label-default
                     = (-(bet.amount / 100000000)).round(6)
-        
-#registerModal.modal.fade{"data-backdrop" => "static"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span.aria-hidden
-            &times;
-          %span.sr-only
-            Close
-        %h4.modal-title Register/Sign In
-      .modal-body
-        %form{:role => "form"}
-          .row
-            .col-md-12
-              %label Username
-              %input#user_username.form-control{:name => "username", :type => "text"}/
-            .col-md-12
-              %label Password
-              %input#user_password.form-control{:name => "password", :type => "password"}/
-            .col-md-12
-              %input.btn.btn-primary{:style => "margin-top: 10px", :type => "submit", :value => "Register"}/
-              %a.btn.btn-primary{:href => "javascript:void(0)", :style => "margin-top: 10px"} Sign In
-#depositModal.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span.aria-hidden
-            &times;
-          %span.sr-only
-            Close
-        %h4.modal-title Deposit
-      .modal-body
-        %p.center-block Please send funds to:
-        %h3.center-block
-          - if current_user != nil
-            = current_user.bitcoin_address
-            %table.qr-code
-              - @qr.modules.each_index do |x|
-                %tr
-                  - @qr.modules.each_index do |y|
-                    %td{:class => (@qr.dark?(x,y) ? 'black' : 'white')}
+
+= render :partial => "deposit_modal"
 
 = render :partial => "cashout_modal"
-              
-#transactionModal.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{"data-dismiss" => "modal", :type => "button"}
-          %span.aria-hidden
-            &times;
-          %span.sr-only
-            Close
-        %h4.modal-title Transaction History
-      .modal-body
-        %table.table.table-striped
-          %thead
-            %tr
-              %th Amount
-              %th Type
-              %th Status
-              %th Date
-          %tbody#transactions
-        
-#betModal.modal
+
+= render :partial => "transaction_history_modal"

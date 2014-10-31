@@ -1,0 +1,20 @@
+#depositModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Deposit
+      .modal-body
+        %p.center-block Please send funds to:
+        %h3.center-block
+          - if current_user != nil
+            = current_user.bitcoin_address
+            %table.qr-code
+              - @qr.modules.each_index do |x|
+                %tr
+                  - @qr.modules.each_index do |y|
+                    %td{:class => (@qr.dark?(x,y) ? 'black' : 'white')}

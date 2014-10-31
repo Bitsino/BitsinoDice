@@ -1,0 +1,19 @@
+#transactionModal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span.aria-hidden
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title Transaction History
+      .modal-body
+        %table.table.table-striped
+          %thead
+            %tr
+              %th Amount
+              %th Type
+              %th Status
+              %th Date
+          %tbody#transactions
