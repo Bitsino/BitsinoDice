@@ -20,6 +20,12 @@ feature 'When cashing out.', :js => true do
     page.save_screenshot('tmp/screenshot.jpg')
     
     page.find('#cashout-button').click
+    
+    click_on 'Transaction History'
+    
+    tr = page.find('tbody#transactions tr')
+    
+    expect(tr.all('td')[0].text).to eq("0.001")
   end
 
 end

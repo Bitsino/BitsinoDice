@@ -4,18 +4,22 @@ class CashoutsController < ApplicationController
 
   def create
     
-    amount = cashout_attributes[:amount]
-    if amount.to_f > 0.0
-      co = Cashout.new
-      co.user_id = current_user.id
-      co.address = cashout_attributes[:address]
-      co.amount = (amount.to_f * 100000000).to_i
-      co.save
+
+    cashout = current_user.cashouts.build(cashout_attributes)
+    
+    # We deal in statoshis.
+    cashout.amount = current_user.balance - ((cashout.amount * 100000000).to_i)
+    # Take off miners fee.
+    cashout.amount = cashout.amount - 10000
+    
+    if cashout.amount > 0
+      
+      cashout.save
       
       bal = Balance.new
       bal.user_id = current_user.id
-      bal.transaction_hash = "Cashout to " + cashout_attributes[:address]
-      bal.amount = 0 - (amount.to_f * 100000000).to_i
+      bal.transaction_hash = "Cashout to " + cashout.address
+      bal.amount = 0 - cashout.amount
       bal.save
       
     end
@@ -29,14 +33,6 @@ class CashoutsController < ApplicationController
   protected
 
     def cashout_attributes
-      params.permit(:address, :amount)
-    end
-
-    def amount
-      if (current_user.balance.in_satoshi - 0.0005.in_satoshi) >= cashout_attributes[:amount].to_f.in_satoshi
-        cashout_attributes[:amount].to_f.in_satoshi
-      else
-        current_user.balance.in_satoshi - 0.0005.in_satoshi
-      end
+      params.require(:cashout).permit(:address, :amount)
     end
 end

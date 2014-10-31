@@ -13,7 +13,11 @@ class User < ActiveRecord::Base
   def balance
     bal = 0
     balances.each{ |balance| bal = bal + balance.amount }
-    return bal / 100000000.0
+    return bal
+  end
+
+  def balance_as_btc
+    (balance / 100000000.0)
   end
   
   def self.get_cold_storage
