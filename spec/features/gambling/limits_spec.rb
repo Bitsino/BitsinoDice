@@ -22,4 +22,19 @@ feature 'When hacking' do
     expect(b.count).to eq(0)
   end
 
+  scenario 'can a bet more than our limit.' do
+    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:balance, :big_spender)
+    
+    signin('test@example.com', 'please123')
+    
+    find("#amount-slider").set "200000000"
+    
+    page.find("#roll-button").click
+    
+    b = Bet.all
+    
+    expect(b.count).to eq(0)
+  end
+
 end
