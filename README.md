@@ -1,4 +1,7 @@
+[![Build Status](https://travis-ci.org/onchain/bitcoinary.svg?branch=master)](https://travis-ci.org/onchain/bitcoinary)
+
 ## Bitcoin Dice Gambling Site
+
 
 ![](http://i.imgur.com/4AeQByN.png)
 
