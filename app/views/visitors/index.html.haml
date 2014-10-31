@@ -6,11 +6,13 @@
           %dt Name
           %dd
             .input-group
-              %input#username.form-control{:type => "text", :value => current_user.try(:name), :readonly => "true", "data-address" => "#{current_user.try(:username)}"} 
+              %input#username.form-control{:type => "text", :value => current_user.try(:name), :readonly => "true"} 
               %span.input-group-addon
                 = fa_icon "pencil"
           %dt User Id
-          %dd#userId= current_user.try(:id)
+          %dd
+            %input#userid.form-control{:type => "text", :value => current_user.try(:id), :readonly => "true" } 
+              
       #seeds
         %dl
           %dt Server Seed
