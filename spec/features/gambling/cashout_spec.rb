@@ -8,7 +8,9 @@ feature 'When cashing out.', :js => true do
   end
 
   scenario 'does the data get saved' do
-    skip "Not yet complete"
+    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:balance)
+    signin('test@example.com', 'please123')
   end
 
 end
