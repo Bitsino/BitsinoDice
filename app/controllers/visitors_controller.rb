@@ -28,7 +28,7 @@ class VisitorsController < ApplicationController
             @bet.amount = last_bet.amount
           end
           
-          @data_slider_range = "0," + (current_user.balance * 100000000).to_s
+          @data_slider_range = "0," + current_user.balance.to_s
           
           @qr = RQRCode::QRCode.new(current_user.bitcoin_address)
         end
