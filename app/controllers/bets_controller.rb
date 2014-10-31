@@ -13,8 +13,14 @@ class BetsController < ApplicationController
     bet.secret      = Secret.last || Secret.create
     bet.server_seed = session[:server_seed]
     
+    # Set limit to 1 BTC (100,000,000 satoshis).
+    limit = 100000000
+    if ENV['limit'] != nil
+      limit = ENV['limit'].to_i
+    end
+    
     # We need to put a thread lock around this to stop timing attacks.
-    if bet.amount <= current_user.balance
+    if bet.amount <= current_user.balance and bet.amount < limit
       bet.save
     end
 
