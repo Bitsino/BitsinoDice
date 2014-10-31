@@ -12,7 +12,11 @@ class BetsController < ApplicationController
     bet             = current_user.bets.build(bet_attributes)
     bet.secret      = Secret.last || Secret.create
     bet.server_seed = session[:server_seed]
-    bet.save
+    
+    # We need to put a thread lock around this to stop timing attacks.
+    if bet.amount <= current_user.balance
+      bet.save
+    end
 
     respond_to do |format|
       format.html { redirect_to root_url }
