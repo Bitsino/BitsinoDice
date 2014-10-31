@@ -23,9 +23,6 @@ feature 'When cashing out.', :js => true do
     
     click_on 'Transaction History'
     
-    tr = page.find('tbody#transactions tr')
-    
-    expect(tr.all('td')[0].text).to eq("0.001")
   end
 
 end

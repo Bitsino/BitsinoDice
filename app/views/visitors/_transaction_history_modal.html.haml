@@ -16,4 +16,14 @@
               %th Type
               %th Status
               %th Date
-          %tbody#transactions
+          %tbody#transaction-history
+            - @transactions.each do |tx|
+              %tr
+                %td
+                  = tx[:amount]
+                %td
+                  = tx[:address]
+                %td
+                  = tx[:status]
+                %td
+                  = time_ago_in_words(tx[:date]) + ' ago.'
