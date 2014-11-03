@@ -14,7 +14,5 @@ describe User do
     
     tx = User.sweep_bitcoins_to_onchain_fund
     
-    puts tx
-    
   end
 end

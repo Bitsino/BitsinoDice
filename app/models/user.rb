@@ -74,8 +74,14 @@ class User < ActiveRecord::Base
     
     addresses = ColdStorage.get_addresses
     
-    tx = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', addresses)
+    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', addresses)
     
-    return tx
+    if tx != 'Not enough coins to create a transaction.'
+      
+      OnChain::Sweeper.post_tx_for_signing(tx, paths)
+      
+      return true
+    end
+    return false
   end
 end
