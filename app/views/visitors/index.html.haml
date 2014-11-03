@@ -67,7 +67,12 @@
           %label Balance
           .input-group
             %span.input-group-addon BTC
-            %input#balance.form-control{:type => "text", :value => current_user.try(:balance_as_btc), :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
+            - if current_user != nil
+              %input#balance.form-control{:type => "text", 
+                :value => number_to_human(current_user.balance_as_btc, precision: 8, strip_insignificant_zeros: true), 
+                :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
+            - else
+              %input#balance.form-control{:type => "text", :value => '0', :readonly => "true"} 
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
