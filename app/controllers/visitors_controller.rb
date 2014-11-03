@@ -24,7 +24,7 @@ class VisitorsController < ApplicationController
           make_sure_user_address_is_set
           
           last_bet = current_user.bets.last
-          if last_bet != nil and last_bet.amount < (current_user.balance * 100000000)
+          if last_bet != nil and last_bet.amount < current_user.balance
             @bet.amount = last_bet.amount
           end
           
