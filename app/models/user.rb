@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   end
 
   def balance_as_btc
-    (balance / 100000000.0)
+    x = (balance / 100000000.0).to_f
+    return "%f" % x
   end
   
   def self.get_cold_storage
