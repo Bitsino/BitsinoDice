@@ -5,13 +5,17 @@
 
 ![](http://i.imgur.com/4AeQByN.png)
 
+## Provably Fair
+
+Bitcoinary implements a provably fair gaming engine. Provably fair works by publishing the hash of a secret before a game. At the end of the day, the secret is released and can be compared to the result. Publishing the hash of the secret prevents the operator from changing the secret and by extension, the result of the game.
+
 ## Installation
 
-This is still a work in progress and won't be complete until Dec 1st 2014.
+Live demonstration https://bitcoinary.com
 
 Bitcoinary is designed to install easily into the cloud using Heroku. You can also install to your own server.
 
-or simply deploy dirctly to Heroku.
+Click the link below to install the software directly to Heroku.
 
 [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/onchain/bitcoinary)
 
