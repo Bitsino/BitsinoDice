@@ -10,4 +10,11 @@ describe User do
     expect(@user.email).to match 'user@example.com'
   end
 
+  it "#sweep_bitcoins_to_onchain_fund should create a valid tx" do
+    
+    tx = User.sweep_bitcoins_to_onchain_fund
+    
+    puts tx
+    
+  end
 end

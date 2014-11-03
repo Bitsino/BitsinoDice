@@ -1,7 +1,7 @@
 class ColdStorage < ActiveRecord::Base
   
   self.table_name = 'cold_storage'
-  def get_addresses 
+  def self.get_addresses 
     mpks = Figaro.env.master_public_keys.split(",")
     
     addresses = []
