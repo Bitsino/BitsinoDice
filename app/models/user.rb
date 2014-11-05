@@ -72,9 +72,7 @@ class User < ActiveRecord::Base
     cs.block = block_end
     cs.save
     
-    addresses = ColdStorage.get_addresses
-    
-    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', addresses)
+    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', keys)
     
     if tx != 'Not enough coins to create a transaction.'
       
