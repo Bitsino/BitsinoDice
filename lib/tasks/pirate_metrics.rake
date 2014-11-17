@@ -14,7 +14,7 @@ task :pirate_metrics => :environment do
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-  request = Net::HTTP::Post.new("/api/1/services/generic/6f1b09c1e19f44ba202f8ed051a6bd98")
+  request = Net::HTTP::Post.new("/api/1/services/generic/550e2fabd234eda198cd0936e8799e63")
   request.add_field('Content-Type', 'application/json')
   request.body = {'title' => 'How are we doing ?', 'message' => message}.to_json
   response = http.request(request)
