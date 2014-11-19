@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030135705) do
+ActiveRecord::Schema.define(version: 20141119122639) do
 
   create_table "balances", force: true do |t|
     t.string   "transaction_hash"
@@ -24,10 +24,10 @@ ActiveRecord::Schema.define(version: 20141030135705) do
   create_table "bets", force: true do |t|
     t.integer  "user_id"
     t.integer  "secret_id"
-    t.decimal  "amount",      precision: 15, scale: 8
-    t.decimal  "game",        precision: 4,  scale: 2
-    t.decimal  "roll",        precision: 4,  scale: 2
-    t.string   "rolltype",                             default: "under"
+    t.integer  "amount",      limit: 15
+    t.decimal  "game",                   precision: 4, scale: 2
+    t.decimal  "roll",                   precision: 4, scale: 2
+    t.string   "rolltype",                                       default: "under"
     t.string   "client_seed"
     t.string   "server_seed"
     t.datetime "created_at"
