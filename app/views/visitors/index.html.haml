@@ -59,10 +59,10 @@
     .col-md-3.btc-options
       .row
         .col-md-12
-          %label Balance
+          %label BTC Balance
           - if current_user != nil
             %input#balance.form-control{:type => "text", 
-              :value => 'BTC ' + number_to_human(current_user.balance_as_btc, precision: 8, strip_insignificant_zeros: true), 
+              :value => number_to_human(current_user.balance_as_btc, precision: 8, strip_insignificant_zeros: true), 
               :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
           - else
             %input#balance.form-control{:type => "text", :value => '0', :readonly => "true"} 
