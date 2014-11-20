@@ -99,7 +99,7 @@ feature 'When gambling', :js => true do
     user = FactoryGirl.create(:user)
     signin('test@example.com', 'please123')
     
-    page.execute_script("$('#probability-slider').val('setValue', 80);$('#probability-slider').change()")
+    page.execute_script("$('#probability-slider').val(80);$('#probability-slider').change()")
     
     prob = page.find('#bet_chance').value
     

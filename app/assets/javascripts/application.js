@@ -27,7 +27,7 @@ var initialise = function() {
   $('#client-seed-form').val(client_seed);
 
   $("#probability-slider").noUiSlider({
-      start: parseInt($('#start-prob').val()),
+      start: $('#start-prob').val(),
       connect: "lower",
       range: {
         min: 0.5,
