@@ -22,7 +22,7 @@ feature 'User delete', :devise, :js do
     visit edit_user_registration_path(user)
     click_button 'Cancel my account'
     
-    expect(page).to have_content I18n.t 'devise.registrations.destroyed'
+    expect(first('.snackbar', :visible => false).value).to eq I18n.t 'devise.registrations.destroyed'
   end
 
 end

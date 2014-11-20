@@ -22,8 +22,7 @@ feature 'User edit', :devise do
     fill_in 'Email', :with => 'newemail@example.com'
     fill_in 'Current password', :with => user.password
     click_button 'Update'
-    txts = [I18n.t( 'devise.registrations.updated'), I18n.t( 'devise.registrations.update_needs_confirmation')]
-    expect(page).to have_content(/.*#{txts[0]}.*|.*#{txts[1]}.*/)
+    expect(find('.snackbar', :visible => false).value).to eq I18n.t( 'devise.registrations.updated')
   end
 
   # Scenario: User cannot edit another user's profile
