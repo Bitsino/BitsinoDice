@@ -53,45 +53,49 @@
             %input{ type: 'text', class: 'form-control input-small', readonly: "true", id: 'amount-view', placeholder: 'Amount', value: '0' } 
         .form-group{:style => "margin-top: 10px"}
           - if current_user == nil
-            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary disabled', id: 'roll-button'
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-info disabled', id: 'roll-button'
           - else 
-            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button'
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-info btn-raised', id: 'roll-button'
     .col-md-3.btc-options
       .row
         .col-md-12
           %label Balance
-          .input-group
-            %span.input-group-addon BTC
-            - if current_user != nil
-              %input#balance.form-control{:type => "text", 
-                :value => number_to_human(current_user.balance_as_btc, precision: 8, strip_insignificant_zeros: true), 
-                :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
-            - else
-              %input#balance.form-control{:type => "text", :value => '0', :readonly => "true"} 
+          - if current_user != nil
+            %input#balance.form-control{:type => "text", 
+              :value => 'BTC ' + number_to_human(current_user.balance_as_btc, precision: 8, strip_insignificant_zeros: true), 
+              :readonly => "true", "data-address" => "#{current_user.try(:address)}"} 
+          - else
+            %input#balance.form-control{:type => "text", :value => '0', :readonly => "true"} 
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
             %button.btn.btn-primary.disabled.btn-block
+              %i.mdi-action-account-balance-wallet
               Deposit
           - else 
             %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal"}
+              %i.mdi-action-account-balance-wallet
               Deposit
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
             %button.btn.btn-primary.disabled.btn-block
+              %i.mdi-action-account-balance
               Cashout
           - else
             %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal"}
+              %i.mdi-action-account-balance
               Cashout
           
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
             %button.btn.btn-primary.disabled.btn-block
+              %i.mdi-action-receipt
               Transaction History
           - else
             %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal"}
+              %i.mdi-action-receipt
               Transaction History
 .container
   .row

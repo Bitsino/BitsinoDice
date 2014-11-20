@@ -7,7 +7,9 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Bitsino Dice', root_path, class: 'navbar-brand'
+      %a{ href: root_path, class: 'navbar-brand' }
+        %i.mdi-action-swap-vert-circle
+        Bitsino Dice
     .collapse.navbar-collapse
       %ul.nav.navbar-nav
         = render 'layouts/navigation_links'
