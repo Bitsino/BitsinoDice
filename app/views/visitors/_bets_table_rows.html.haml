@@ -8,7 +8,7 @@
       = time_ago_in_words(bet.created_at)
       ago.
     %td
-      = (bet.amount / 100000000).round(6)
+      = (bet.amount / 100000000.0).round(6)
     %td
       = bet.multiplier.round(2)
     %td

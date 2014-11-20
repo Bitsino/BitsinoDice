@@ -14,7 +14,8 @@ class BetsController < ApplicationController
     bet.server_seed = session[:server_seed]
     
     # Set limit to 1 BTC (100,000,000 satoshis).
-    limit = 100000000
+    # Set limit to 0.2 BTC
+    limit = 20000000
     if ENV['limit'] != nil
       limit = ENV['limit'].to_i
     end

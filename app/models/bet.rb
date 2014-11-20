@@ -26,7 +26,11 @@ class Bet < ActiveRecord::Base
   end
 
   def profit
-    (amount * (multiplier).to_d) - amount
+    if win?
+      return ((amount.to_d * (multiplier).to_d) - amount.to_d).to_i
+    else
+      return -amount
+    end
   end
 
   def win?
