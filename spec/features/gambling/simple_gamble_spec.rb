@@ -22,10 +22,10 @@ feature 'When gambling', :js => true do
     expect(tr.all('td')[0].text).to eq("1")
     expect(tr.all('td')[1].text).to eq("Test User")
     expect(tr.all('td')[2].text).to eq("less than a minute ago.")
-    expect(tr.all('td')[3].text).to eq("0.0")
+    expect(tr.all('td')[3].text).to eq("0")
     expect(tr.all('td')[4].text).to eq("2.0")
     expect(tr.all('td')[5].text).to eq("< 49.5")
-    expect(tr.all('td')[7].text).to eq("0.0")
+    expect(tr.all('td')[7].text).to eq("0")
   end
   
   scenario 'is the balance displaying correctly.' do
@@ -117,10 +117,10 @@ feature 'When gambling', :js => true do
     expect(tr.all('td')[0].text).to eq("1")
     expect(tr.all('td')[1].text).to eq("Test User")
     expect(tr.all('td')[2].text).to eq("less than a minute ago.")
-    expect(tr.all('td')[3].text).to eq("0.0")
+    expect(tr.all('td')[3].text).to eq("0")
     expect(tr.all('td')[4].text).to eq("1.24")
     expect(tr.all('td')[5].text).to eq("< 80.0")
-    expect(tr.all('td')[7].text).to eq("0.0")
+    expect(tr.all('td')[7].text).to eq("0")
     
   end
 
