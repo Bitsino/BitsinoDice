@@ -8,7 +8,7 @@
       = time_ago_in_words(bet.created_at)
       ago.
     %td
-      = (bet.amount / 100000000.0).round(6)
+      = "%f" % (bet.amount / 100000000.0).round(6)
     %td
       = bet.multiplier.round(2)
     %td
@@ -22,7 +22,7 @@
     %td
       - if bet.win? or bet.amount == 0
         %span.label.label-success
-          = (bet.profit / 100000000).round(6)
+          = "%f" % (bet.profit / 100000000.0)
       - else
         %span.label.label-default
-          = (-(bet.amount / 100000000)).round(6)
+          = "%f" % (-(bet.amount / 100000000.0))
