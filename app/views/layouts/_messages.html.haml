@@ -1,6 +1,11 @@
 -# Rails flash messages styled for Bootstrap 3.0
 - flash.each do |name, msg|
   - if msg.is_a?(String)
-    %div{:class => "alert alert-#{name.to_s == 'notice' ? 'success' : 'danger'}"}
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-      = content_tag :div, msg, :id => "flash_#{name}"
+    %input.snackbar{ type: 'hidden', value: msg } 
+
+:javascript
+  $( document ).ready(function() {
+    $('.snackbar').each(function(i, obj) {
+        $.snackbar({content: $(this).val(), timeout: 3000});
+    });
+  });

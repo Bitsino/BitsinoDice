@@ -30,14 +30,14 @@
         .row
           .col-md-12
             %label Probability of winning
-            %div.slider.shor
-            %input#probability-slider{ type: 'text', 'data-slider' => "true", 
-              'data-slider-range' => '0.5,99.5', 'data-slider-step' => '0.5', value: "49.5" }
+            %div#probability-slider.slider{ style: 'width: 100%' }
+            %input#start-prob{ type: 'hidden', value: @bet.game }
         .row{ style: 'margin-top:20px' }
           .col-md-12
             %label Amount of Bet.
-            = f.text_field :amount, id: 'amount-slider', 'data-slider' => "true", 'data-slider-step' => '1000', 
-              'data-slider-range' => @data_slider_range
+            %div#amount-slider.slider{ style: 'width: 100%' }
+            %input#range{ type: 'hidden', value: @data_slider_range}
+            = f.hidden_field :amount, id: 'amount-hidden'
         .row{ style: 'margin-top:20px' }
           .col-md-3
             .form-group
@@ -59,7 +59,6 @@
             = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button', disabled: 'disabled'
           - else 
             = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button'
-          
     .col-md-3.btc-options
       .row
         .col-md-12

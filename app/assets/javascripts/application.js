@@ -19,27 +19,63 @@
 var initialise = function() {
   
   setInterval(function() { 
-    $('#bets').load('/bet_table');
+    //$('#bets').load('/bet_table');
   }, 2000); 
     
   var client_seed = chance.hash({length: 16});
   $('#client-seed').val(client_seed);
   $('#client-seed-form').val(client_seed);
 
+  $("#probability-slider").noUiSlider({
+      start: parseInt($('#start-prob').val()),
+      connect: "lower",
+      range: {
+        min: 0.5,
+        max: 99.5
+      }
+  });
+  
+  $("#probability-slider").on({
+  	slide: function(){
+      update_button_text();
+  	},
+  	change: function(){
+      update_button_text();
+  	}
+  });
 
+  $("#amount-slider").noUiSlider({
+      start: parseInt($('#amount-hidden').val()),
+      connect: "lower",
+      range: {
+        min: parseInt($('#range').val().split(',')[0]),
+        max: parseInt($('#range').val().split(',')[1])
+      }
+  });
+  
+  $("#amount-slider").on({
+  	slide: function(){
+      update_button_text();
+  	},
+  	change: function(){
+      update_button_text();
+  	}
+  });
+  
   update_button_text();
 
-  $("#amount-slider").bind("slider:changed", function (event, data) {
-   update_button_text();
-  });
+  //$("#amount-slider").bind("slider:changed", function (event, data) {
+  // update_button_text();
+  //});
 
-  $("#probability-slider").bind("slider:changed", function (event, data) {
-   update_button_text();
-  });
+  //$("#probability-slider").bind("slider:changed", function (event, data) {
+  // update_button_text();
+  //});
 
   function update_button_text() {
  
    amount = $("#amount-slider").val();
+   $('#amount-hidden').val(amount);
    prob = parseFloat($("#probability-slider").val()).toFixed(1);
    multiplier = (99 / prob).toFixed(2);
    profit = (amount * multiplier / 100000000.0).toFixed(4)

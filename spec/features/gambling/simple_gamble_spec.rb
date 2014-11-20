@@ -15,6 +15,8 @@ feature 'When gambling', :js => true do
     
     page.find("#roll-button").click
     
+    page.save_screenshot('tmp/screenshot.png')
+    
     expect(page.all('tbody#bets tr').count).to eq(1)
     
     tr = page.find('tbody#bets tr')
@@ -52,7 +54,7 @@ feature 'When gambling', :js => true do
     expect(bal_before).to eq(bal_after)
     
     # OK let's slide the amount slider and see what happens
-    page.execute_script("$('#amount-slider').simpleSlider('setValue', '20000');")
+    page.execute_script("$('#amount-slider').val(20000);$('#amount-slider').change()")
     
     page.find("#roll-button").click
 
@@ -67,7 +69,7 @@ feature 'When gambling', :js => true do
     user = FactoryGirl.create(:balance)
     signin('test@example.com', 'please123')
     
-    page.execute_script("$('#amount-slider').simpleSlider('setValue', 10000);")
+    page.execute_script("$('#amount-slider').val(10000);$('#amount-slider').change()")
     
     amount = page.find('#amount-view').value
     
@@ -97,7 +99,7 @@ feature 'When gambling', :js => true do
     user = FactoryGirl.create(:user)
     signin('test@example.com', 'please123')
     
-    page.execute_script("$('#probability-slider').simpleSlider('setValue', 80);")
+    page.execute_script("$('#probability-slider').val('setValue', 80);$('#probability-slider').change()")
     
     prob = page.find('#bet_chance').value
     

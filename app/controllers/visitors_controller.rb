@@ -8,7 +8,7 @@ class VisitorsController < ApplicationController
         @bet  = Bet.new.tap do |b|
           b.server_seed = session[:server_seed]
           b.amount      = 0
-          b.game        = 49.50
+          b.game        = 49.5
         end
         
         @cashout = Cashout.new
@@ -16,6 +16,7 @@ class VisitorsController < ApplicationController
         @transactions = []
 
         @bets = Bet.latest_bets
+        @data_slider_range = "0,0"
         
         if current_user
           
@@ -26,6 +27,7 @@ class VisitorsController < ApplicationController
           last_bet = current_user.bets.last
           if last_bet != nil and last_bet.amount < current_user.balance
             @bet.amount = last_bet.amount
+            @bet.game = last_bet.game
           end
           
           @data_slider_range = "0," + current_user.balance.to_s
