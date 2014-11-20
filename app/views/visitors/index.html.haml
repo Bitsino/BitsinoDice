@@ -9,10 +9,7 @@
         %dl
           %dt Name
           %dd
-            .input-group
-              %input#username.form-control{:type => "text", :value => current_user.try(:name), :readonly => "true"} 
-              %span.input-group-addon
-                = fa_icon "pencil"
+            %input#username.form-control{:type => "text", :value => current_user.try(:name), :readonly => "true"} 
           %dt User Id
           %dd
             %input#userid.form-control{:type => "text", :value => current_user.try(:id), :readonly => "true" } 
@@ -56,7 +53,7 @@
             %input{ type: 'text', class: 'form-control input-small', readonly: "true", id: 'amount-view', placeholder: 'Amount', value: '0' } 
         .form-group{:style => "margin-top: 10px"}
           - if current_user == nil
-            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button', disabled: 'disabled'
+            = f.submit 'Roll Dice', class: 'btn btn-block btn-primary disabled', id: 'roll-button'
           - else 
             = f.submit 'Roll Dice', class: 'btn btn-block btn-primary', id: 'roll-button'
     .col-md-3.btc-options
@@ -74,7 +71,7 @@
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
-            %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal", disabled: 'disabled' }
+            %button.btn.btn-primary.disabled.btn-block
               Deposit
           - else 
             %button.btn.btn-primary.btn-block{"data-target" => "#depositModal", "data-toggle" => "modal"}
@@ -82,7 +79,7 @@
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
-            %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal", disabled: 'disabled'}
+            %button.btn.btn-primary.disabled.btn-block
               Cashout
           - else
             %button.btn.btn-primary.btn-block{"data-target" => "#cashoutModal", "data-toggle" => "modal"}
@@ -91,7 +88,7 @@
       .row{ style: 'margin-top:10px' }
         .col-md-12
           - if current_user == nil
-            %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal", disabled: 'disabled'}
+            %button.btn.btn-primary.disabled.btn-block
               Transaction History
           - else
             %button.btn.btn-primary.btn-block#transButton{"data-target" => "#transactionModal", "data-toggle" => "modal"}
