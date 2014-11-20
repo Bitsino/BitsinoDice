@@ -17,6 +17,8 @@ gem "font-awesome-rails"
 gem 'figaro'
 gem 'onchain'
 gem 'rqrcode'
+gem 'bootstrap-material-design'
+gem 'jquery-nouislider-rails'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

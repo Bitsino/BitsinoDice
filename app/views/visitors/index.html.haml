@@ -30,6 +30,7 @@
         .row
           .col-md-12
             %label Probability of winning
+            %div.slider.shor
             %input#probability-slider{ type: 'text', 'data-slider' => "true", 
               'data-slider-range' => '0.5,99.5', 'data-slider-step' => '0.5', value: "49.5" }
         .row{ style: 'margin-top:20px' }
@@ -41,11 +42,9 @@
           .col-md-3
             .form-group
               %label Roll Under
-              .input-group
-                %span.input-group-addon <
-                = f.text_field :game, class: 'form-control', readonly: true, value: '49.50', id: 'roll-prob'
-                = f.hidden_field :rolltype
-                = f.hidden_field :client_seed, id: 'client-seed-form'
+              = f.text_field :game, class: 'form-control', readonly: true, value: '49.50', id: 'roll-prob'
+              = f.hidden_field :rolltype
+              = f.hidden_field :client_seed, id: 'client-seed-form'
           .col-md-3
             %label For a profit of
             %input#bet_profit.form-control{:readonly => "true", :type => "text", :value => "0"}/
