@@ -15,7 +15,7 @@
 //= require turbolinks
 //= require bootstrap-sprockets  
 //= require bootstrap-material-design
-//= require_tree .
+//= require chance.min
 var initialise = function() {
   
   setInterval(function() { 
