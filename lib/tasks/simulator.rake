@@ -49,9 +49,12 @@ task :simulate_gamblers_ruin => :environment do
         puts "A win resetting amount, total we had to bet " + amount.to_s + " profit " + profit.to_s
         profit = profit + GAMBLE
         amount = GAMBLE
+        Bet.where("client_seed = ? and created_at < ?", "baebbde11f8bb328", 3.minutes.ago).delete_all
       end
       sleep 4
     end
     
   end
+
+  Bet.where("client_seed = ?", "baebbde11f8bb328").delete_all
 end
