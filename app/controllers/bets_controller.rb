@@ -22,7 +22,10 @@ class BetsController < ApplicationController
     
     # We need to put a thread lock around this to stop timing attacks.
     if bet.amount <= current_user.balance and bet.amount < limit
+      
       bet.save
+      
+      Pusher['test_channel'].trigger('my_event', bet.as_json)
     end
 
     respond_to do |format|

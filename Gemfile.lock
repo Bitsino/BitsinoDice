@@ -104,6 +104,7 @@ GEM
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
+    httpclient (2.5.3.3)
     i18n (0.6.11)
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
@@ -135,6 +136,10 @@ GEM
       money-tree
     orm_adapter (0.5.0)
     pg (0.17.1)
+    pusher (0.14.2)
+      httpclient (~> 2.4)
+      multi_json (~> 1.0)
+      signature (~> 0.1.6)
     quiet_assets (1.0.3)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -199,6 +204,7 @@ GEM
       json
       json
     sexp_processor (4.4.4)
+    signature (0.1.7)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -259,6 +265,7 @@ DEPENDENCIES
   launchy
   onchain
   pg
+  pusher
   quiet_assets
   rails (= 4.1.6)
   rails_12factor

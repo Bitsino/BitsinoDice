@@ -1,4 +1,5 @@
 class Bet < ActiveRecord::Base
+  include ActionView::Helpers::DateHelper
 
   belongs_to :user
   belongs_to :secret
@@ -9,15 +10,15 @@ class Bet < ActiveRecord::Base
   def as_json(options = {})
     {
       id: id,
-      amount: amount,
+      username: user.try(:username) || 'Guest',
+      amount: amount / 100000000.0,
       multiplier: multiplier,
       game: game,
       rolltype: rolltype == 'under' ? '<' : '>',
       roll: roll.round(2),
-      profit: win? ? ("%.8f" % profit) : 0,
+      profit: profit / 100000000.0,
       win_or_lose: win? ? 'win' : 'lose',
-      created_at: created_at,
-      username: user.try(:username) || 'Guest'
+      created_at: time_ago_in_words(created_at) + ' ago',
     }
   end
   

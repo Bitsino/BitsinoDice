@@ -19,6 +19,7 @@ gem 'onchain'
 gem 'rqrcode'
 gem 'bootstrap-material-design'
 gem 'jquery-nouislider-rails'
+gem 'pusher'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]

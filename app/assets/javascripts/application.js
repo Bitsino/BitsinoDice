@@ -16,11 +16,32 @@
 //= require bootstrap-sprockets  
 //= require bootstrap-material-design
 //= require chance.min
+//= require pusher.min
 var initialise = function() {
   
-  setInterval(function() { 
-    $('#bets').load('/bet_table');
-  }, 4000); 
+  var pusher = new Pusher('1fdb3cf163217908dd6f');
+  var channel = pusher.subscribe('test_channel');
+  channel.bind('my_event', function(data) {
+
+    row = '<tr><td>' + data.id + '</td>'
+    row += '<td>' + data.username + '</td>'
+    row += '<td>' + data.created_at + '</td>'
+    row += '<td>' + data.amount + '</td>'
+    row += '<td>' + data.multiplier + '</td>'
+    row += '<td>' + data.rolltype + ' ' + data.game + '</td>'
+    row += '<td>' + data.roll + '</td>'
+    
+    if(data.win_or_lose == 'win') {
+      row += '<td><span class="label label-success">'
+    } else {
+      row += '<td><span class="label label-default">'
+    }
+    row += data.profit + '</span></td></tr>'
+    
+    $('#bets tr:first').before(row);
+
+    $('#bets tr:last').remove();
+  });
     
   var client_seed = chance.hash({length: 16});
   $('#client-seed').val(client_seed);

@@ -40,6 +40,8 @@ task :simulate_gamblers_ruin => :environment do
       b.client_seed = 'baebbde11f8bb328'
       b.save
       
+      Pusher['test_channel'].trigger('my_event', b.as_json)
+      
       win = b.win?
       
       if !win
@@ -51,7 +53,7 @@ task :simulate_gamblers_ruin => :environment do
         amount = GAMBLE
         Bet.where("client_seed = ? and created_at < ?", "baebbde11f8bb328", 3.minutes.ago).delete_all
       end
-      sleep 4
+      sleep 1
     end
     
   end
