@@ -10,7 +10,7 @@ class Bet < ActiveRecord::Base
   def as_json(options = {})
     {
       id: id,
-      username: user.try(:username) || 'Guest',
+      username: user.try(:name) || 'Guest',
       amount: amount / 100000000.0,
       multiplier: multiplier,
       game: game,
