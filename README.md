@@ -11,7 +11,7 @@ Bitcoinary implements a provably fair gaming engine. Provably fair works by publ
 
 ## Installation
 
-Live demonstration https://bitcoinary.com
+Live demonstration https://bitsinodice.com
 
 Bitcoinary is designed to install easily into the cloud using Heroku. You can also install to your own server.
 
