@@ -26,7 +26,7 @@ task :simulate_gamblers_ruin => :environment do
   
   profit = 0
   
-  while u.balance > 0 do
+  while u.balance > GAMBLE do
     
     win = false
     amount = GAMBLE
