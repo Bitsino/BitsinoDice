@@ -25,7 +25,9 @@ class BetsController < ApplicationController
       
       bet.save
       
-      Pusher['test_channel'].trigger('my_event', bet.as_json)
+      if Pusher.url != nil
+        Pusher['test_channel'].trigger('my_event', bet.as_json)
+      end
     end
 
     respond_to do |format|
