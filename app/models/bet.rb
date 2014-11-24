@@ -49,10 +49,18 @@ class Bet < ActiveRecord::Base
   protected
 
     def calculate_roll
+      
+      # Combine all the secrets.
       str  = [secret.secret, server_seed, client_seed].join
+      
+      # Generate a hexadecimal hash.
       hash = Digest::SHA512.hexdigest(str)
 
-      self.roll = (hash[0, 8].hex / 42949672.95).round(2)
+      # Generate a number between 0 and 9999 inclusive.
+      one_and_ten_thousand = hash.hex % 10000
+      
+      # Conver it to a 2 declimal point number between 0 and 99.99
+      self.roll = one_and_ten_thousand / 100.0
     end
 
     def update_balance
