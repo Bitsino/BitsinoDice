@@ -3,7 +3,7 @@
 ## Bitcoin Dice Gambling Site
 
 
-![](http://i.imgur.com/4AeQByN.png)
+![](http://i.imgur.com/BY4bmB3.png)
 
 ## Provably Fair
 

@@ -59,7 +59,7 @@ class Bet < ActiveRecord::Base
       # Generate a number between 0 and 9999 inclusive.
       one_and_ten_thousand = hash.hex % 10000
       
-      # Conver it to a 2 declimal point number between 0 and 99.99
+      # Conver it to a 2 decimal point number between 0 and 99.99
       self.roll = one_and_ten_thousand / 100.0
     end
 
