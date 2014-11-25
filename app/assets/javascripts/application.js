@@ -19,6 +19,8 @@
 //= require pusher.min
 var initialise = function() {
   
+  $.material.init();
+  
   var pusher = new Pusher('1fdb3cf163217908dd6f');
   var channel = pusher.subscribe('test_channel');
   channel.bind('my_event', function(data) {
