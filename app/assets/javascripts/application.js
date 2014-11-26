@@ -50,7 +50,7 @@ var initialise = function() {
   $('#client-seed-form').val(client_seed);
 
   $("#probability-slider").noUiSlider({
-      start: $('#start-prob').val(),
+      start: parseFloat($('#start-prob').val()),
       connect: "lower",
       range: {
         min: 0.5,
