@@ -53,10 +53,11 @@ task :simulate_gamblers_ruin => :environment do
         amount = GAMBLE
         Bet.where("client_seed = ? and created_at < ?", "baebbde11f8bb328", 3.minutes.ago).delete_all
       end
-      sleep 1
+      sleep (rand 120)
     end
     
   end
 
   Bet.where("client_seed = ?", "baebbde11f8bb328").delete_all
+  u.balances.where("amount < 100000000").delete_all
 end
