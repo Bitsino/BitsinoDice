@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
     
     if tx != 'Not enough coins to create a transaction.'
       
-      OnChain::Sweeper.post_tx_for_signing(tx, paths)
+      OnChain::Sweeper.post_tx_for_signing(tx, paths, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5')
       
       return true
     end
