@@ -129,7 +129,7 @@ GEM
     multi_xml (0.5.5)
     nokogiri (1.6.4.1)
       mini_portile (~> 0.6.0)
-    onchain (2.0.5)
+    onchain (2.0.6)
       bitcoin-ruby
       chain-ruby
       httparty
