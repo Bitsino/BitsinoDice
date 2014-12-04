@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
     incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
 
     cs = ColdStorage.first
-    cs.block = block_end
+    cs.sweep_block = block_end
     cs.save
     
     tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', keys)
