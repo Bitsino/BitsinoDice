@@ -66,13 +66,13 @@ class User < ActiveRecord::Base
     keys = ColdStorage.get_extended_keys
     
     puts "Sweeping #{count} users starting from block #{block}"
-    incoming, block_end = OnChain::Sweeper.sweep(2, keys, 'm/#{index}', count, block)
+    incoming, block_end = OnChain::Sweeper.sweep(keys.length, keys, 'm/#{index}', count, block)
 
     cs = ColdStorage.first
     cs.sweep_block = block_end
     cs.save
     
-    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', keys)
+    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(keys.length, incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', keys)
     
     puts ENV['ONCHAIN_EMAIL']
     
