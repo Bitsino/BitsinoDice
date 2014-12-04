@@ -66,7 +66,7 @@ class User < ActiveRecord::Base
     keys = ColdStorage.get_extended_keys
     
     puts "Sweeping #{count} users starting from block #{block}"
-    incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
+    incoming, block_end = OnChain::Sweeper.sweep(2, keys, 'm/#{index}', count, block)
 
     cs = ColdStorage.first
     cs.sweep_block = block_end
