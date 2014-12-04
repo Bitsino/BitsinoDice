@@ -56,8 +56,9 @@ class VisitorsController < ApplicationController
   
   def make_sure_user_address_is_set
     if current_user.bitcoin_address == nil
+      keys = ColdStorage.get_extended_keys
       current_user.bitcoin_address = OnChain::Sweeper.multi_sig_address_from_mpks(
-        ColdStorage.get_extended_keys, "m/#{current_user.id}")
+        keys.length, keys, "m/#{current_user.id}")
       current_user.save
     end
   end
