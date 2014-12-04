@@ -17,9 +17,11 @@ task :simulate_heavy_user => :environment do
   end
 end
 
-task :simulate_gamblers_ruin => :environment do
+task :simulate_gamblers_ruin, [:email] => :environment do |t, args|
+  
+  user_email = args[:email]
 
-  u = User.find_by_email('ian.purton@gmail.com')
+  u = User.find_by_email(user_email)
   
   LIMIT = 20000000
   GAMBLE = 10000
