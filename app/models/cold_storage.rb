@@ -12,11 +12,16 @@ class ColdStorage < ActiveRecord::Base
     return addresses
   end
   
+  def self.get_fund_address
+    return OnChain::Sweeper.generate_address_of_redemption_script(redemption_script)
+  end
+  
   def self.get_extended_keys
     return Figaro.env.master_public_keys.split(",")
   end
   
-  def redemption_script
-    return OnChain::Sweeper.generate_redemption_script(get_addresses)
+  def self.redemption_script
+    addresses = get_addresses
+    return OnChain::Sweeper.generate_redemption_script(addresses.length, addresses)
   end
 end

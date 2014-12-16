@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
     keys = ColdStorage.get_extended_keys
     
     puts "Sweeping #{count} users starting from block #{block}"
-    incoming, block_end = OnChain::Sweeper.sweep(keys, 'm/#{index}', count, block)
+    incoming, block_end = OnChain::Sweeper.sweep(keys.count, keys, 'm/#{index}', count, block)
     
     ActiveRecord::Base.transaction do
       incoming.each do |coins|
@@ -72,13 +72,13 @@ class User < ActiveRecord::Base
     cs.sweep_block = block_end
     cs.save
     
-    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(keys.length, incoming, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5', keys)
+    tx, paths = OnChain::Sweeper.create_payment_tx_from_sweep(keys.length, incoming, ColdStorage.get_fund_address, keys)
     
     puts ENV['ONCHAIN_EMAIL']
     
     if tx != 'Not enough coins to create a transaction.'
       
-      OnChain::Sweeper.post_tx_for_signing(tx, paths, '3GzGsZ5zFWsFR5LU8TYntptkZqvZrPWzw5')
+      OnChain::Sweeper.post_tx_for_signing(tx, paths, ColdStorage.get_fund_address)
       
       return true
     end
