@@ -12,7 +12,7 @@ class Bet < ActiveRecord::Base
       id: id,
       username: user.try(:name) || 'Guest',
       amount: amount_formatted,
-      multiplier: multiplier,
+      multiplier: multiplier.round(2),
       game: game,
       rolltype: rolltype == 'under' ? '<' : '>',
       roll: roll.round(2),
