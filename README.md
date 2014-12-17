@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Bitsino/BitsinoDice.svg?branch=master)](https://travis-ci.org/onchain/bitcoinary)
+[![Build Status](https://travis-ci.org/Bitsino/BitsinoDice.svg?branch=master)](https://travis-ci.org/Bitsino/BitsinoDice)
 
 ## Bitcoin Dice Gambling Site
 
@@ -21,7 +21,7 @@ Click the link below to install the software directly to Heroku.
 
 ## Security
 
-### Bitcoinary does not require you to install bitcoind
+### BitsinoDice does not require you to install bitcoind
 
 Bitcoinary uses the chain.com API to get balance information and to scan for incoming Bitcoins. As no private keys are kept on the site we remove some major security issues.
 
