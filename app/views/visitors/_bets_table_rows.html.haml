@@ -1,28 +1,31 @@
 - @bets.each do |bet|
-  %tr
-    %td.text-primary
-      = bet.id
-    %td
-      = bet.user.name
-    %td
-      = time_ago_in_words(bet.created_at)
-      ago.
-    %td
-      = "%g" % ("%f" % (bet.amount / 100000000.0).round(6))
-    %td
-      = bet.multiplier.round(2)
-    %td
-      - if bet.rolltype == 'under'
-        <
-      - else
-        >
-      = bet.game
-    %td
-      = bet.roll
-    %td
-      - if bet.win? or bet.amount == 0
-        %span.label.label-success
-          = "%g" % ("%f" % (bet.profit / 100000000.0))
-      - else
-        %span.label.label-default
-          = "%g" % ("%f" % (-(bet.amount / 100000000.0)))
+  - begin
+    %tr
+      %td.text-primary
+        = bet.id
+      %td
+        = bet.user.name
+      %td
+        = time_ago_in_words(bet.created_at)
+        ago.
+      %td
+        = "%g" % ("%f" % (bet.amount / 100000000.0).round(6))
+      %td
+        = bet.multiplier.round(2)
+      %td
+        - if bet.rolltype == 'under'
+          <
+        - else
+          >
+        = bet.game
+      %td
+        = bet.roll
+      %td
+        - if bet.win? or bet.amount == 0
+          %span.label.label-success
+            = "%g" % ("%f" % (bet.profit / 100000000.0))
+        - else
+          %span.label.label-default
+            = "%g" % ("%f" % (-(bet.amount / 100000000.0)))
+    - rescue => e
+      - puts e
