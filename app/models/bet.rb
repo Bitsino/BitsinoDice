@@ -11,12 +11,12 @@ class Bet < ActiveRecord::Base
     {
       id: id,
       username: user.try(:name) || 'Guest',
-      amount: amount / 100000000.0,
+      amount: amount_formatted,
       multiplier: multiplier,
       game: game,
       rolltype: rolltype == 'under' ? '<' : '>',
       roll: roll.round(2),
-      profit: profit / 100000000.0,
+      profit: profit_formatted,
       win_or_lose: win? ? 'win' : 'lose',
       created_at: time_ago_in_words(created_at) + ' ago',
     }
@@ -44,6 +44,21 @@ class Bet < ActiveRecord::Base
   
   def self.latest_bets
     bets = Bet.order('created_at DESC').limit(25)
+  end
+  
+  def profit_formatted
+    return format_btc(profit)
+  end
+  
+  def amount_formatted
+    return format_btc(amount)
+  end
+  
+  def format_btc(amount)
+    if amount < 10000
+      return "%.8f" % (amount / 100000000.0)
+    end
+    return amount / 100000000.0
   end
 
   protected

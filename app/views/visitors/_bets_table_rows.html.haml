@@ -9,7 +9,7 @@
         = time_ago_in_words(bet.created_at)
         ago.
       %td
-        = "%g" % ("%f" % (bet.amount / 100000000.0).round(6))
+        = bet.amount_formatted
       %td
         = bet.multiplier.round(2)
       %td
@@ -23,9 +23,9 @@
       %td
         - if bet.win? or bet.amount == 0
           %span.label.label-success
-            = "%g" % ("%f" % (bet.profit / 100000000.0))
+            = bet.profit_formatted
         - else
           %span.label.label-default
-            = "%g" % ("%f" % (-(bet.amount / 100000000.0)))
+            = bet.profit_formatted
     - rescue => e
       - puts e
