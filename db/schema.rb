@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119122639) do
+ActiveRecord::Schema.define(version: 20141217121140) do
 
   create_table "balances", force: true do |t|
     t.string   "transaction_hash"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 20141119122639) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "bets", ["server_seed"], name: "index_bets_on_server_seed", unique: true
 
   create_table "cashouts", force: true do |t|
     t.string   "address"

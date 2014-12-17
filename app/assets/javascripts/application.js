@@ -21,6 +21,14 @@ var initialise = function() {
   
   $.material.init();
   
+  $('form.submit-once').submit(function(e){
+    if( $(this).hasClass('form-submitted') ){
+      e.preventDefault();
+      return;
+    }
+    $(this).addClass('form-submitted');
+  });
+  
   var pusher = new Pusher('1fdb3cf163217908dd6f');
   var channel = pusher.subscribe('test_channel');
   channel.bind('my_event', function(data) {
