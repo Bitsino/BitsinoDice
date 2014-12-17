@@ -2,7 +2,7 @@
   - begin
     %tr
       %td.text-primary
-        = bet.id
+        = link_to bet.id.to_s, bet_url(bet), { onclick: 'showVerification("' + bet.id.to_s + '"); return false' }
       %td
         = bet.user.name
       %td
@@ -27,5 +27,5 @@
         - else
           %span.label.label-default
             = bet.profit_formatted
-    - rescue => e
-      - puts e
+  - rescue => e
+    - puts e

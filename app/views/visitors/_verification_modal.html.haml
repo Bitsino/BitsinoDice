@@ -1,0 +1,18 @@
+#verificationModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+        %h4.modal-title Provably Fair
+      .modal-body
+        #verCont
+      .modal-footer
+        %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close
+        
+:javascript
+  function showVerification(id) {
+    var url = '/bets/' + id;
+
+    $( "#verCont" ).load( url );
+    $('#verificationModal').modal();
+  }

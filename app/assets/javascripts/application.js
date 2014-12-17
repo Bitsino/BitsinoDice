@@ -33,7 +33,8 @@ var initialise = function() {
   var channel = pusher.subscribe('test_channel');
   channel.bind('my_event', function(data) {
 
-    row = '<tr><td>' + data.id + '</td>'
+    var js = "showVerification(" + data.id + ")";
+    row = '<tr><td><a href="/bets/show/' + data.id + '" onclick="' + js + '" ></a></td>'
     row += '<td>' + data.username + '</td>'
     row += '<td>' + data.created_at + '</td>'
     row += '<td>' + data.amount + '</td>'

@@ -1,0 +1,16 @@
+
+%dl
+  %dt Bet Id
+  %dd
+    %input.form-control{:type => "text", :value => @bet.id.to_s, :readonly => "true"} 
+  %dt Server Seed
+  %dd
+    %input.form-control{:type => "text", :value => @bet.server_seed, :readonly => "true"} 
+  %dt Client Seed
+  %dd
+    %input.form-control{:type => "text", :value => @bet.client_seed, :readonly => "true"} 
+  %dt Client Seed
+  %dd
+    %textarea.form-control{:type => "text", :readonly => "true"} 
+      = @bet.secret.to_s
+              
