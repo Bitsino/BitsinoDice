@@ -9,7 +9,7 @@
   %dt Client Seed
   %dd
     %input.form-control{:type => "text", :value => @bet.client_seed, :readonly => "true"} 
-  %dt Client Seed
+  %dt Secret Seed (Revealed after 24 hours.)
   %dd
     %textarea.form-control{:type => "text", :readonly => "true"} 
       = @bet.secret.to_s
