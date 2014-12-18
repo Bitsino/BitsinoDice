@@ -13,6 +13,10 @@ class BetsController < ApplicationController
     bet.secret      = Secret.last || Secret.create
     bet.server_seed = session[:server_seed]
     
+    if bet.amount < 0
+      bet.amount = 0
+    end
+    
     # Set limit to 1 BTC (100,000,000 satoshis).
     # Set limit to 0.2 BTC
     limit = 20000000

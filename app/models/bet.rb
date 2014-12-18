@@ -90,7 +90,9 @@ class Bet < ActiveRecord::Base
         b.amount = (- amount)
       end
       
-      b.save
+      if b.amount != 0
+        b.save
+      end
     end
 
     def make_payment
