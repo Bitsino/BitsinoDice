@@ -2,7 +2,12 @@ task :pirate_metrics => :environment do
 
   count = User.where("created_at >= ?", 1.day.ago).count
   bets = Bet.where("created_at >= ?", 1.day.ago).count
-  btc = 0
+  btc = Balance.where('created_at < ? and length(transaction_hash) > ?', 24.hours.ago, 20).sum(:amount)
+  
+  if btc < 10000
+    btc = "%.8f" % (btc / 100000000.0)
+  end
+  btc = btc / 100000000.0
   
   message = "User Registrations (last 24 hours) : <em>#{count}</em> "
   message += "<br>"
