@@ -12,7 +12,7 @@ class CashoutsController < ApplicationController
     # Take off miners fee.
     cashout.amount = cashout.amount - 10000
     
-    if cashout.amount > 0
+    if cashout.amount > 0 and Bitcoin::valid_address?(cashout.address)
       
       cashout.save
       
