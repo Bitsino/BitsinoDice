@@ -22,6 +22,13 @@ class Cashout < ActiveRecord::Base
     if tx.is_a? String
       puts tx
     else
+      # Update the cashout status
+      cashouts.each do |cashout|
+        cashout.status = true
+        cashout.save
+      end
+      
+      # Forward the TX to onchain for signing.
       tx_hex = OnChain.bin_to_hex(tx.to_payload)
       OnChain::Sweeper.post_tx_for_signing(tx_hex, [], ColdStorage.get_fund_address)
     end
