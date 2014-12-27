@@ -6,10 +6,15 @@ class Cashout < ActiveRecord::Base
     cashouts = Cashout.where('status is null')
     payees = cashouts.map { |c| [c.address, c.amount] }
     
+    
     # No one to pay out to ?
     if payees.count == 0
       return
     end
+    
+    total = Cashout.all.inject(0){|sum,c| sum += c.amount }
+    
+    puts "Paying out " + total.to_s
     
     # Get the redmption script for our fund
     rs  = ColdStorage.redemption_script
